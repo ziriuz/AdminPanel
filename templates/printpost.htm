@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ru">
+<!-- SITEMAP_PRIORITY: 0.2 -->
+
+<head>
+
+<title>Печать почтового перевода</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+	<meta http-equiv="Content-Language" content="ru">
+<style type="text/css">
+
+td { padding: 0; border: 0;}
+
+body { text-align: center; background-color: white; margin: 0; }
+
+
+
+.cell {font-weight: bold; display:inline-block;
+vertical-align: bottom; text-align: center; font-size:3em;width:12.5mm}
+.cells { }
+
+.trasfer_blank{font-family: Arial, sans-serif;
+font-weight: bold;
+width:650mm;
+height:900mm;
+border:1px solid white ;
+background: url(images/f112ep-large.jpg) no-repeat 0% 0% transparent;
+margin:0;
+font-size:3em;
+text-align:left;
+padding-left:30mm;
+vertical-align:top;
+}
+.amount{margin-top:176mm;}
+.np{margin-top:-2mm;}
+.tel{margin-top:-2mm;margin-left:460mm}
+.to-name{margin-top:12mm;margin-left:40mm;}
+.to-address{margin-top:10mm;margin-left:40mm;}
+.index{margin-top:0mm;margin-left:486mm;width:180mm}
+.index .cell {font-weight: bold; display:inline-block;
+vertical-align: bottom; text-align: center; font-size:3em;width:13.5mm}
+
+.inn{margin-top:68mm;margin-left:30mm;width:200mm;display:inline-block}
+.corr{margin-top:68mm;margin-left:56mm;width:300mm;display:inline-block}
+
+.bankname{margin-left:120mm;}
+.account-number{margin-left:48mm;display:inline-block;width:300mm}
+.bik{display:inline-block;margin-left:92mm;}
+.from-name{margin-top:2mm;margin-left:50mm;}
+.from-address{margin-top:8mm;margin-left:130mm;}
+
+</style>
+<style type="text/css" media="print">
+#toolbox { display: none; }
+</style>
+
+</head>
+
+<body>
+
+<div id="toolbox">
+<p>Форма поч&shy;то&shy;во&shy;го пере&shy;во&shy;да 112эф печа&shy;та&shy;ет&shy;ся наодном листе бума&shy;ги сдвух сто&shy;рон. Длякор&shy;рект&shy;ной печа&shy;ти доку&shy;мен&shy;та налисте фор&shy;ма&shy;та А4(210&times;297мм) необ&shy;хо&shy;ди&shy;мо обну&shy;лить шири&shy;ну всех полей иуста&shy;но&shy;вить масштаб 100%.</p>
+<form id="frm" method="post">
+<input type="button" value="Напечатать" onclick="window.print();">
+<script language="javascript" type="text/javascript">
+<!--
+if (document.domain && document.referrer && document.referrer.search(document.domain) > -1)
+		document.write('<input type=\"button\" value=\"Закрыть\" onclick=\"window.close();\">');
+//-->
+</script>
+</form>
+<center>
+<span style="font-size: 80%;">информационный блок от начала страницы до пунктирной линии на печать не выводится</span></center></div>
+<div class="trasfer_blank">
+<div class=amount><?=$postTrans->amount?></div>
+<div class=tel>9 0 3 - 1 8 5 8 2 7 5</div><div class=np>V</div>
+<div class=to-name><?=$postTrans->toName?></div>
+<div class=to-address><?=$postTrans->toAddress?></div>
+<div class=index>
+<table class="cells" cellspacing="0"><tr>
+					<td class="cell"><?=$postTrans->toIndex[0]?></td>
+					<td class="cell"><?=$postTrans->toIndex[1]?></td>
+					<td class="cell"><?=$postTrans->toIndex[2]?></td>
+					<td class="cell"><?=$postTrans->toIndex[3]?></td>
+					<td class="cell"><?=$postTrans->toIndex[4]?></td>
+					<td class="cell"><?=$postTrans->toIndex[5]?></td></tr></table>
+</div>
+<div class=inn>
+<table class="cells" cellspacing="0"><tr>
+					<td class="cell" ><?=$postTrans->toInn[0]?></td>
+					<td class="cell" ><?=$postTrans->toInn[1]?></td>
+					<td class="cell" ><?=$postTrans->toInn[2]?></td>
+					<td class="cell" ><?=$postTrans->toInn[3]?></td>
+					<td class="cell" ><?=$postTrans->toInn[4]?></td>
+					<td class="cell" ><?=$postTrans->toInn[5]?></td>
+					<td class="cell" ><?=$postTrans->toInn[6]?></td>
+					<td class="cell" ><?=$postTrans->toInn[7]?></td>
+					<td class="cell" ><?=$postTrans->toInn[8]?></td>
+					<td class="cell" ><?=$postTrans->toInn[9]?></td>
+					<td class="cell" ><?=$postTrans->toInn[10]?></td>
+					<td class="cell" ><?=$postTrans->toInn[11]?></td></tr></table>
+</div>					
+<div class=corr>
+<table class="cells" cellspacing="0"><tr>
+					<td class="cell" ><?=$postTrans->toKor[0]?></td>
+					<td class="cell" ><?=$postTrans->toKor[1]?></td>
+					<td class="cell" ><?=$postTrans->toKor[2]?></td>
+					<td class="cell" ><?=$postTrans->toKor[3]?></td>
+					<td class="cell" ><?=$postTrans->toKor[4]?></td>
+					<td class="cell" ><?=$postTrans->toKor[5]?></td>
+					<td class="cell" ><?=$postTrans->toKor[6]?></td>
+					<td class="cell" ><?=$postTrans->toKor[7]?></td>
+					<td class="cell" ><?=$postTrans->toKor[8]?></td>
+					<td class="cell" ><?=$postTrans->toKor[9]?></td>
+					<td class="cell" ><?=$postTrans->toKor[10]?></td>
+					<td class="cell" ><?=$postTrans->toKor[11]?></td>
+					<td class="cell" ><?=$postTrans->toKor[12]?></td>
+					<td class="cell" ><?=$postTrans->toKor[13]?></td>
+					<td class="cell" ><?=$postTrans->toKor[14]?></td>
+					<td class="cell" ><?=$postTrans->toKor[15]?></td>
+					<td class="cell" ><?=$postTrans->toKor[16]?></td>
+					<td class="cell" ><?=$postTrans->toKor[17]?></td>
+					<td class="cell" ><?=$postTrans->toKor[18]?></td>
+					<td class="cell" ><?=$postTrans->toKor[19]?></td></tr></table>
+</div>
+<div class=bankname><?=$postTrans->toBank?></div>
+<div class=account-number>
+<table class="cells" cellspacing="0"><tr>
+					<td class="cell" ><?=$postTrans->toAccount[0]?></td>
+					<td class="cell" ><?=$postTrans->toAccount[1]?></td>
+					<td class="cell" ><?=$postTrans->toAccount[2]?></td>
+					<td class="cell" ><?=$postTrans->toAccount[3]?></td>
+					<td class="cell" ><?=$postTrans->toAccount[4]?></td>
+					<td class="cell" ><?=$postTrans->toAccount[5]?></td>
+					<td class="cell" ><?=$postTrans->toAccount[6]?></td>
+					<td class="cell" ><?=$postTrans->toAccount[7]?></td>
+					<td class="cell" ><?=$postTrans->toAccount[8]?></td>
+					<td class="cell" ><?=$postTrans->toAccount[9]?></td>
+					<td class="cell" ><?=$postTrans->toAccount[10]?></td>
+					<td class="cell" ><?=$postTrans->toAccount[11]?></td>
+					<td class="cell" ><?=$postTrans->toAccount[12]?></td>
+					<td class="cell" ><?=$postTrans->toAccount[13]?></td>
+					<td class="cell" ><?=$postTrans->toAccount[14]?></td>
+					<td class="cell" ><?=$postTrans->toAccount[15]?></td>
+					<td class="cell" ><?=$postTrans->toAccount[16]?></td>
+					<td class="cell" ><?=$postTrans->toAccount[17]?></td>
+					<td class="cell" ><?=$postTrans->toAccount[18]?></td>
+					<td class="cell" ><?=$postTrans->toAccount[19]?></td>
+					</tr></table>
+</div>
+<div class=bik><table class="cells" cellspacing="0"><tr>
+					<td class="cell" ><?=$postTrans->toBik[0]?></td>
+					<td class="cell" ><?=$postTrans->toBik[1]?></td>
+					<td class="cell" ><?=$postTrans->toBik[2]?></td>
+					<td class="cell" ><?=$postTrans->toBik[3]?></td>
+					<td class="cell" ><?=$postTrans->toBik[4]?></td>
+					<td class="cell" ><?=$postTrans->toBik[5]?></td>
+					<td class="cell" ><?=$postTrans->toBik[6]?></td>
+					<td class="cell" ><?=$postTrans->toBik[7]?></td>
+					<td class="cell" ><?=$postTrans->toBik[8]?></td></tr></table>
+</div>
+<div class=from-name><?=$postTrans->fromName[0]?> <?=$postTrans->fromName[1]?></div>
+<div class=from-address><?=$postTrans->fromAddress[0]?> <?=$postTrans->fromAddress[1]?></div>
+<div class=index>
+<table class="cells" cellspacing="0"><tr>
+					<td class="cell"><?=$postTrans->fromIndex[0]?></td>
+					<td class="cell"><?=$postTrans->fromIndex[1]?></td>
+					<td class="cell"><?=$postTrans->fromIndex[2]?></td>
+					<td class="cell"><?=$postTrans->fromIndex[3]?></td>
+					<td class="cell"><?=$postTrans->fromIndex[4]?></td>
+					<td class="cell"><?=$postTrans->fromIndex[5]?></td></tr></table>
+</div>
+</div>
+</body>
+
+</html>

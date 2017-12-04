@@ -1,0 +1,49 @@
+<div class=editform>
+<form  method="post" name=getstat<?=$ITEM->id?>>
+ <input type="hidden" name="fitem_id" value="<?=$ITEM->id?>"/>
+ <input type="hidden" name="action" value="getstat"/>
+ <div class=blockedit>
+ <p><label>Период</label>
+   <select name=fperiod>
+		  <option selected value=1>За день</option>
+		  <option  value=7>За неделю</option>
+		  <option  value=30>За месяц</option>
+   </select>
+	 <?php foreach(getNmclStatCount($ITEM->id, 1) as $label=>$value):?><b><?=$label?></b> <font color=red><?=$value?></font> <?php endforeach;?>
+ </p>
+ </div>
+</form>
+</div>
+<div class="statreport">
+<h3>Переходы со страниц</h3>
+<table>
+<thead>
+<tr align=center>
+<td>Время просмотра</td>
+<td>Переход со страницы</td>
+<td>Название страницы</td>
+<td>Начало сессии</td>
+<td>Название страницы начала сессии</td>
+</tr>
+</thead>
+<?php foreach(getNmclStat($ITEM->id, 1) as $i=> $ROW):?>
+<tr>
+<td>
+<?=$ROW->mt?>
+</td>
+<td>
+<?=$ROW->referer_link?>
+</td>
+<td>
+<?=$ROW->referer_title?>
+</td>
+<td>
+<?=$ROW->sess_referer_link?>
+</td>
+<td>
+<?=$ROW->sess_referer_title?>
+</td>
+</tr>
+<?php endforeach;?>
+</table>
+</div>

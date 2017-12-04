@@ -1,0 +1,66 @@
+         <table cellspacing=0 cellpadding=0 border=0>
+		 <thead>
+         <tr>
+              <td align=left>Товар</td>
+			  <td align=left>Размер</td>
+              <td align=center>Кол-во</td>
+              <td align=center>Стоимость</td>
+			  <td align=center>На складе</td>
+			  <td align=left>Описание</td>
+         </tr>
+		 </thead>
+		 <tbody>
+		 <?php $nmcl = -1;$flag=0?>
+         <?php foreach ($ORDERITEMS as $i => $ORDERITEM):?>
+           <?php $ITEM = new Item($ORDERITEM->nmcl_id);
+		     if ($nmcl!=$ORDERITEM->nmcl_id) $flag=0; else $flag++;
+             $nmcl = $ORDERITEM->nmcl_id;
+		   ?>
+		   <?php if ($flag==0):?>
+		   <tr class="<?=($ORDERITEM->deleted==0?'':'deleted')?>"><td colspan=6>
+			<em><?=$ITEM->alt_code?> <strong><?=(strlen($ORDERITEM->nmcl_name)>0?$ORDERITEM->nmcl_name:$ITEM->name)?></strong></em> [<a href=index.php?fitem_id=<?=$ORDERITEM->nmcl_id?>><?=$ORDERITEM->nmcl_id?></a>]
+			Цена: <b><?=$ORDERITEM->price?></b> руб.
+		   </td></tr>
+		   <?php endif?>
+           <tr class="<?=($ORDERITEM->deleted==0?'':'deleted')?>">  <?php if ($flag==0):?>
+		         <td align=left rowspan=<?=$ORDERITEM->rowspan?>>
+                  <a href=<?=$ITEM->foto_name[0]?> target=_blank onclick="ShowImage('<?=$ITEM->foto_name[0]?>', 200, 50, 600 , 600 ); return false;" >
+                  <img style="float:left" src=<?=$ITEM->foto_name[0]?> width=140 ></a>
+				 </td>
+				 <?php endif?>
+                 <td align=center nowrap><?=$ORDERITEM->ctg_name?>
+                 <td align=center nowrap><span class="<?=($ORDERITEM->quantity>1?'highlight':'')?>"><?=$ORDERITEM->quantity?></span>
+                 <td align=center nowrap><?=$ORDERITEM->amount?> руб.
+				 <?php if ($flag==0):?>
+				 <td align=right nowrap rowspan=<?=$ORDERITEM->rowspan?>>
+				 <?php foreach(getOrderItemWrhRests($ORDER->order_id,$ORDERITEM->nmcl_id) as $i=>$o):?>				   				   
+				   <p><span class=<?=($ORDERITEM->ctg_id==$o->ctg_id?'highlight':'')?>><b><?=$o->ctg_name?></b></span>  ост. <?=$o->quantity?> шт.
+				   </p>				 
+				 <?php endforeach;?>
+				 </td>
+		    <td align=left rowspan=<?=$ORDERITEM->rowspan?>>
+			<p>
+			<?php require("templates/itemdesc.htm");?>
+			</p>
+			</td>
+				 <?php endif?>
+           </tr>
+         <?php endforeach;?>
+           <tr> <td align=right nowrap colspan=3> <b>Итого к оплате:
+                <td align=center nowrap> <b> <?=$ORDER->amount?> руб.</b>
+				<td><td>
+           </tr>
+			 		<?php if(strlen($ORDER->deliv_name)>0):?>
+          <tr> <td align=left nowrap colspan=6> Способ доставки:<br> <?=$ORDER->deliv_name?> (<?=$ORDER->geo_zone?>) 
+                (<?=(strlen($ORDER->deliv_price)>0?$ORDER->deliv_price:$ORDER->price_range)?> руб.)
+				
+					</tr>
+          <?php endif?>
+			 		<?php if($ORDER->deliv_price>0):?>
+          <tr> <td align=right nowrap colspan=3> <b>Итого c доставкой</b>
+                <td align=center nowrap> <b><?=$ORDER->amount+$ORDER->deliv_price?> руб.</b>
+				<td><td>
+					</tr>
+          <?php endif?>
+		 </tbody>	 
+         </table>

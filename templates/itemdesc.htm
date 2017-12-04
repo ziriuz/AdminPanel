@@ -1,0 +1,18 @@
+<?=$ITEM->description?>
+<br>
+<br>
+<p>
+      <div class="comm">
+        <i class="comm-rt"><i></i></i><i class="comm-rb"><i></i></i><i class="comm-lb"><i></i></i><i class="comm-lt"><i></i></i>
+        <div class="comm-body">
+
+<u>ТЕХ. ОПИСАНИЕ</u>
+<br>
+<?php if(strlen($ITEM->tech_description)>0):?>
+<?=$ITEM->tech_description?>
+<?php else:?>
+Отсутствует
+<?php endif?>
+
+        </div>
+      </div>

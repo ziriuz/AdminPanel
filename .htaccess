@@ -1,0 +1,11 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^labels/? adminapp.php [L]
+RewriteRule ^warehouse.php/? warehouse.php [L]
+RewriteRule ^warehouse/? adminapp.php [L]
+RewriteRule ^wborder/? adminapp.php [L]
+RewriteRule ^kluvonos/? adminapp.php [L]
+RewriteRule ^orders2/? adminapp.php [L]
+RewriteRule ^reports/? adminapp.php [L]
+#RewriteRule .* index.php [L]s

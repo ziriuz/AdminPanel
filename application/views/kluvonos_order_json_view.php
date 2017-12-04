@@ -1,0 +1,39 @@
+{"success":true,
+"token":"<?=$token?>",
+"message":"<?=$message?>",
+"data":{
+ "order_id":"<?=$order['order_id']?>",
+ "order_number":"<?=$order['order_number']?>",
+ "shopify_id":"<?=$order['shopify_id']?>",
+ "shopify_upd":"<?=$order['shopify_upd']?>",
+ "last_modified":"<?=$order['last_modified']?>",
+ "delivery_dt":"<?=$order['delivery_dt']?>",
+ "delivery_address":"<?=$order['delivery_address']?>",
+ "status":"<?=$order['status']?>",
+ "status_dt":"<?=$order['status_dt']?>",
+ "payment_status":"<?=$order['payment_status']?>",
+ "payment_dt":"<?=$order['payment_dt']?>",
+ "delivery_total":"<?=$order['delivery_total']?>",
+ "cash_on_delivery":"<?=$order['cash_on_delivery']?>",
+ "comments":"<?=$order['comments']?>",
+ "transp_number":"<?=$order['transp_number']?>",
+ "transp_dest_code":"<?=$order['transp_dest_code']?>",
+ "transp_order_date":"<?=$order['transp_order_date']?>",
+ "transp_order_status":"<?=$order['transp_order_status']?>",
+ "items":[
+   <?php foreach($order['items'] as $i => $item): ?>
+     <?php if($i>0) echo ","; ?> 
+     {
+      "item_id":"<?=$item['item_id']?>",
+      "nmcl_id":"<?=$item['nmcl_id']?>",
+      "nmcl_name":"<?=addslashes($item['nmcl_name'])?>",
+      "ctg_id":"<?=$item['ctg_id']?>",
+      "order_id":"<?=$item['order_id']?>",
+      "quantity":"<?=$item['quantity']?>",
+      "price":"<?=$item['price']?>",
+      "amount":"<?=$item['amount']?>"
+     }
+   <?php endforeach ?>
+ ]
+}
+}

@@ -1,0 +1,43 @@
+<div class=editform>
+<form  action="index.php" method="post" name=modifyitem<?=$ITEM->id?>>
+ <div class=blockedit>
+ <p>
+ <input type="hidden" name="fitem_id" value="<?=$ITEM->id?>"/>
+ <input type="hidden" name="save_action" value="modify_item"/>
+ <?php if(!$ISAJAX):?><input type="submit" name="btnsave" value="Сохранить"/><?php endif;?>
+ <!--input type="submit" value="Сохранить" class="PrdButton" onclick="file_send('modifyitem<?=$ITEM->id?>')"/-->
+ </p>
+ <p><label>Коллекция</label>
+   <select name=fgrp_id>
+    <?php foreach($GROUPS as $grp_id=>$GRP):?>
+		  <option <?=($grp_id==$ITEM->grp_id?'selected':'')?> value=<?=$grp_id?>> [<?=$grp_id?>] <?=$GRP->grp_name?></option>
+		<?php endforeach;?>
+   </select>
+</p>
+ <p>
+ <label>Название</label> <input type=text name=fname  size="80" value= "<?=htmlspecialchars($ITEM->name)?>">
+ </p>
+ <p>
+ <label>TITLE</label> <input type=text name=ftitle  size="80" value= "<?=$ITEM->title?>">
+ </p>
+ <p><label>Артикул</label> <input type=text name=falt_code size="6"   value= "<?=$ITEM->alt_code?>">
+ <label>Цена опт</label> <input type=text name=fprice_min size="6"  value= "<?=$ITEM->price_min?>">
+ <label>Цена мелкий опт</label> <input type=text name=fprice_mid size="6"  value= "<?=$ITEM->price_mid?>">
+ <label>Цена</label> <input type=text name=fprice size="6"  value= "<?=$ITEM->price?>">
+ </p>
+ <p>
+ <label>Статус</label>  
+    <select name=fstatus>
+	  <option <?=(0==$ITEM->status?'selected':'')?> value=0>[0] В продаже</option>
+	  <option <?=(1==$ITEM->status?'selected':'')?> value=1>[1] Отменен</option>
+   </select> 
+ <label>Дата создания</label> <input type=text name=fcreate_date  size="12" value= "<?=$ITEM->create_date?>"> формат: ГГГГ-ММ-ДД
+ </p><p><label>alt для фотографии</label> <input type=text name=ffoto_alt size="70" value= "<?=$ITEM->foto_alt_src?>">
+ </p>
+ <p><label>Фото</label> <input name="ffoto_name" type="text" size="60" value="<?=$ITEM->foto_name_src?>"></p>
+ <p><label>Описание</label><br><textarea name=fdescription cols=100 rows=10><?=$ITEM->description?></textarea>
+ <p><label>Техническое описание</label><br><textarea name=ftech_description cols=100 rows=10><?=$ITEM->tech_description?></textarea>
+ </p>
+ </div>
+</form>
+</div>

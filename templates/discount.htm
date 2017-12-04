@@ -1,0 +1,117 @@
+<link rel="stylesheet" href="jquery/themes/base/jquery-ui.css">
+<script src="jquery/jquery-1.10.2.js"></script>
+<script src="jquery/ui/jquery-ui.js"></script>
+<style>
+body { font-size: 62.5%; }
+label, input { display:block; }
+input.text { margin-bottom:12px; width:95%; padding: .4em; }
+fieldset { padding:0; border:0; margin-top:25px; }
+h1 { font-size: 1.2em; margin: .6em 0; }
+div#users-contain { width: 350px; margin: 20px 0; }
+div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
+div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
+.ui-dialog .ui-state-error { padding: .3em; }
+.validateTips { border: 1px solid transparent; padding: 0.3em; }
+</style>
+<script>
+$(function() {
+var code = $( "#code" ),
+distype_id = $( "#distype_id" ),
+description = $( "#description" ),
+published = $("#published"),
+allFields = $( [] ).add( code ).add( distype_id ).add( description ).add( published ),
+tips = $( ".validateTips" );
+function updateTips( t ) {
+tips
+.text( t )
+.addClass( "ui-state-highlight" );
+setTimeout(function() {
+tips.removeClass( "ui-state-highlight", 1500 );
+}, 500 );
+}
+function checkLength( o, n, min, max ) {
+if ( o.val().length > max || o.val().length < min ) {
+o.addClass( "ui-state-error" );
+updateTips( "Length of " + n + " must be between " +
+min + " and " + max + "." );
+return false;
+} else {
+return true;
+}
+}
+function checkRegexp( o, regexp, n ) {
+if ( !( regexp.test( o.val() ) ) ) {
+o.addClass( "ui-state-error" );
+updateTips( n );
+return false;
+} else {
+return true;
+}
+}
+$( "#dialog-form" ).dialog({
+autoOpen: false,
+height: 400,
+width: 350,
+modal: true,
+buttons: {
+"Create an account": function() {
+var bValid = true;
+allFields.removeClass( "ui-state-error" );
+if ( bValid ) {
+$( "#users tbody" ).append( "<tr>" +
+"<td>" + code.val() + "</td>" +
+"<td>" + distype_id.val() + "</td>" +
+"<td>" + description.val() + "</td>" +
+"<td>" + published.val() + "</td>" +
+"</tr>" );
+$( this ).dialog( "close" );
+}
+},
+Cancel: function() {
+$( this ).dialog( "close" );
+}
+},
+close: function() {
+allFields.val( "" ).removeClass( "ui-state-error" );
+}
+});
+$( "#create-user" )
+.button()
+.click(function() {
+$( "#dialog-form" ).dialog( "open" );
+});
+});
+</script>
+<div id="dialog-form" title="Create new user">
+<p class="validateTips">All form fields are required.</p>
+<form>
+<fieldset>
+<label for="code">Код</label><input type="text" name="code" id="code" class="text ui-widget-content ui-corner-all">
+<label for="distype_id">Тип</label><input type="text" name="distype_id" id="distype_id" value="" class="text ui-widget-content ui-corner-all">
+<label for="description">Описание</label><input type="text" name="description" id="description" value="" class="text ui-widget-content ui-corner-all">
+<label for="published">Опубликовано</label><input type="text" name="published" id="published" value="" class="text ui-widget-content ui-corner-all">
+</fieldset>
+</form>
+</div>
+<div id="users-contain" class="ui-widget">
+<h1>Скидки:</h1>
+<table id="users" class="ui-widget ui-widget-content">
+<thead>
+<tr class="ui-widget-header ">
+ <th>Код</th>
+ <th>Тип</th>
+ <th>Описание</th>
+ <th>Опубликовано</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+ <td nowrap><?=$discount->code?></td>
+ <td><?=$discount->distype_id?></td>
+ <td><?=$discount->description?></td>
+ <td><?=$discount->published?></td>
+</tr>
+</tbody>
+</table>
+</div>
+<button id="create-user">Добавить скидку</button>

@@ -1,0 +1,39 @@
+<div class=editform>
+<div id=imgList<?=$ITEM->id?>>
+<?php foreach($ITEM->foto_preview as $i=>$photoName):?>
+<a href="../prd_lib/images/<?=$ITEM->foto_name[$i]?>">
+   <img src="../prd_lib/images/<?=$ITEM->foto_preview[$i]?>"  alt="<?=$ITEM->foto_alt?>" id=itemimg<?=$item_id?>_<?=$i?>>
+</a>
+<?php endforeach;?>
+</div>
+<br>
+<form  action="index.php" method="post" name=load_file<?=$ITEM->id?>>
+<input type="hidden" name = "action" value="load_photo"/>
+<label>Загрузить фото</label><input name="itemPhoto" type="file" size="40"/>
+<a href="javascript:loadFile('<?=$ITEM->id?>')"><img src="images/btn-save.jpg" alt="Сохранить изменения"></a>
+<em id="ajaxmes_load_file<?=$ITEM->id?>"></em>
+</form>
+<div style="display:none;">
+<!--script language="javascript">
+var is_file_uploaded = false;
+function on_file_load() {
+if ( ! is_file_uploaded ) {
+is_file_uploaded = true;
+return;
+}
+// этот код выполнится после полной загрузки файла
+is_file_uploaded = false;
+//анализируем ответ сервера
+var respContent = document.getElementById("photo_load_container").innerHTML;
+var values = respContent.itemPhotosplit("|");
+alert("Файл загружен!"+values[0]+values[1]);
+}
+</script-->
+<!-- в этот iframe будет загружен результат работы php обработчика -->
+<iframe style="display:none;" name="loader" onload="on_file_load()"></iframe>
+<form enctype="multipart/form-data" action="loadphoto.php" method="post" target="loader">
+<input type="hidden" name = "action" value="load_photo"/>
+<input type="file" name="" /><input type="submit" value="Отправить файл" />
+</form>
+</div>
+</div>

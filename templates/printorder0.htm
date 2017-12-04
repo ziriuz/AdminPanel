@@ -1,0 +1,123 @@
+<?php $WRHRESTSARR=array();
+		    class WrhRests{
+		    public $nmclId;
+			public $item;
+			public $ctgIdArr = array();
+		    public $wrhRestArr = array();
+			function __construct($orderId,$nmclId){
+			  $this->nmclId = $nmclId;
+			  $this->item = new Item($nmclId);
+			  $this->wrhRestArr = getOrderItemWrhRests($orderId,$nmclId,3); //3-склад мастерская
+			}
+		   }
+		   foreach ($ORDERITEMS as $i => $ORDERITEM){
+		     if (!isset($WRHRESTSARR[$ORDERITEM->nmcl_id]))
+			  $WRHRESTSARR[$ORDERITEM->nmcl_id] = new WrhRests($ORDER->order_id,$ORDERITEM->nmcl_id);
+		     $WRHRESTSARR[$ORDERITEM->nmcl_id]->ctgIdArr[] = $ORDERITEM->ctg_id;
+		   }
+		   $nmcl = -1;$flag=0;
+?><form method=post>
+		 <input type=hidden name=action value=MAKE_RESERVE>
+		 <table cellspacing=0 cellpadding=0 border=0>
+		 <thead>
+         <tr>
+              <td align=left rowspan=2>Артикул</td>
+              <td align=left  rowspan=2>Наименование</td>
+              <td align=center  rowspan=2>Цена</td>
+              <td align=center rowspan=2>Кол-во</td>
+              <td align=center  rowspan=2>Стоимость</td>
+			  <td align=center style="background-color:#D3DAFF;" colspan=4>Склад</td>
+			  <td align=center rowspan=2>Надо шить</td>
+         </tr>
+         <tr>
+			  <td align=center>Размер</td>
+			  <td align=center>Ост.</td>
+			  <td align=center>Резерв</td>
+			  <td align=center>Отгрузка</td>
+         </tr>
+		 </thead>
+		 <tbody>
+         <?php foreach ($ORDERITEMS as $i => $ORDERITEM):?>
+           <?php 
+		     if ($nmcl!=$ORDERITEM->nmcl_id){
+			   $flag=0;
+			   $ITEM =$WRHRESTSARR[$ORDERITEM->nmcl_id]->item;
+			   $WRHRESTS = $WRHRESTSARR[$ORDERITEM->nmcl_id]->wrhRestArr;
+			   $CTG = $WRHRESTSARR[$ORDERITEM->nmcl_id]->ctgIdArr;
+		     }
+			 else $flag++;
+             $nmcl = $ORDERITEM->nmcl_id;			 
+		   ?>
+           <tr class="<?=($ORDERITEM->deleted==0?'':'deleted')?>">  <td align=left> <?=$ITEM->alt_code?></td>
+		         <td align=left>
+                  <a href=<?=$ITEM->foto_name[0]?> target=_blank onclick="ShowImage('<?=$ITEM->foto_name[0]?>', 200, 50, 600 , 600 ); return false;" >
+                  <img style="float:left" src=<?=$ITEM->foto_name[0]?> width=40px></a>
+                  <?=(strlen($ORDERITEM->nmcl_name)>0?$ORDERITEM->nmcl_name:$ITEM->name)?><a href=index.php?fitem_id=<?=$ORDERITEM->nmcl_id?>>...</a><br>Размер: <?=$ORDERITEM->ctg_name?>
+                 <td align=center nowrap> <?=$ORDERITEM->price?> руб.
+                 <td align=center nowrap> <span class="<?=($ORDERITEM->quantity>1?'highlight':'')?>"><?=$ORDERITEM->quantity?></span>
+                 <td align=center nowrap> <?=$ORDERITEM->amount?> руб.
+				 <?php if ($flag==0):?>
+				 <td align=right nowrap rowspan=<?=$ORDERITEM->rowspan?> style="background-color:#FFFFE5;">
+				 <?php foreach( $WRHRESTS as $i=>$o):?>				   
+				 <p class="order_items"><span class=<?=(in_array(/*$ORDERITEM->ctg_id==*/$o->ctg_id,$CTG)?'highlight':'')?>><b><?=$o->ctg_name?></b></span></p>
+				 <?php endforeach;?>
+				 </td>
+				 <td align=right nowrap rowspan=<?=$ORDERITEM->rowspan?> style="background-color:#FFFFE5;">
+				 <?php foreach( $WRHRESTS as $i=>$o):?>				   
+				 <p class="order_items"><?=$o->quantity?> шт.</p>
+				 <?php endforeach;?>
+				 </td>
+				 <td align=right nowrap rowspan=<?=$ORDERITEM->rowspan?> style="background-color:#FFFFE5;">
+				 <?php foreach( $WRHRESTS as $i=>$o):?>
+                  <p class="order_items" <?=$o->reserved_qty>0?'style="border:1px dashed orange;padding:3px"':''?>>				 
+				   <input type=hidden name=fcard_id[] value=<?=$o->card_id?>>
+				   <input type=checkbox name=freserve[] value=<?=$o->card_id?> <?=$o->reserved_qty>0?'checked':''?>> 
+				   <input type=text size=3 name=freserve_qty[] value=<?=$o->reserved_qty>0?$o->reserved_qty:$ORDERITEM->quantity?>> шт.
+				   </p>
+				 <?php endforeach;?>  
+				 </td>
+				 <td align=right nowrap rowspan=<?=$ORDERITEM->rowspan?> style="background-color:#FFFFE5;">
+				 <?php foreach( $WRHRESTS as $i=>$o):?>				   
+				 <p class="order_items" <?=$o->out_qty>0?'style="border:1px dashed orange;padding:3px"':''?>>
+  				   <input type=checkbox name=fwrhout[] value=<?=$o->card_id?> <?=$o->reserved_qty+$o->out_qty>0?'checked':''?>> 
+				   <input type=text size=3 name=fwrhout_qty[] value=<?=$o->reserved_qty+$o->out_qty>0?$o->reserved_qty+$o->out_qty:0?>> шт.
+				   <?=(isset($MESSAGES[$o->card_id])?'<br><em>'.$MESSAGES[$o->card_id].'</em>':'')?>
+				 </p>				 				   
+				 <?php endforeach;?>
+				 </td>
+				 <?php endif?>
+                 <td align=center nowrap>
+				 <p class="order_items" <?=$ORDERITEM->prod>0?'style="border:1px dashed orange;padding:3px"':''?>>
+				  <input type=hidden name=forder_item[] value=<?=$ORDERITEM->item_id?>>				 
+				  <input type=checkbox name=fprod_order[] value=<?=$ORDERITEM->item_id?> <?=$ORDERITEM->prod>0?'checked':''?>>	
+				  <input type=text size=3 name=fprod_order_qty[] value=<?=$ORDERITEM->prod?>> шт.
+                 </p>				  
+				 <?php if ($flag==0):?>
+				 <?php endif?>
+           </tr>
+         <?php endforeach;?>
+           <tr> <td align=right nowrap colspan=4> <b>Итого к оплате:
+                <td align=center nowrap> <b> <?=$ORDER->amount?> руб.</b>
+				<td colspan=4 align=center style="background-color:#FFFFE5;">
+				<input type=submit name='fmakereserve' value="Зарезервировать">
+				<input type=submit name='fcancelreserve' value="Отменить резерв"><br>
+				<input type=submit name='forderout' value="Отгрузить">
+				<input type=submit name='forderin' value="Оприходовать">
+				<td align=center>
+				<input type=submit name='forderprod' value="Заказать">
+           </tr>
+			 		<?php if(strlen($ORDER->deliv_type)>0):?>
+          <tr> <td align=left nowrap colspan=4> Способ доставки:<br> <?=$ORDER->deliv_type?>
+                <td align=center nowrap> <br><?=$ORDER->delivery_price?> руб.
+				<td colspan=4><td>
+					</tr>
+          <?php endif?>
+			 		<?php if($ORDER->deliv_price>0):?>
+          <tr> <td align=right nowrap colspan=4> <b>Итого c доставкой</b>
+                <td align=center nowrap> <b><?=$ORDER->amount_total?> руб.</b>
+				<td colspan=4><td>
+					</tr>
+          <?php endif?>
+		 </tbody>	 
+         </table>
+		 </form>

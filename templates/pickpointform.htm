@@ -1,0 +1,42 @@
+<div class=editform>
+<form  action="index.php" method="post" name=create_pickpoint<?=$ORDER->order_id?>>
+ <div class=blockedit>
+ <p>
+ <input type="hidden" name="fitem_id" value="<?=$ORDER->order_id?>"/>
+ <input type="hidden" name="action" value="create_pickpoint"/>
+ <input type="hidden" id=pp_invoicenumber<?=$ORDER->order_id?> name="pp_invoicenumber" value="<?=$ORDER->pp_invoicenumber?>"/>
+ <input type="hidden" id=pp_barcode<?=$ORDER->order_id?> name="pp_barcode" value="<?=$ORDER->pp_barcode?>"/>
+ <input type="hidden" id=pp_label<?=$ORDER->order_id?> name="pp_label" value="<?=$ORDER->pp_label?>"/>
+ <span id=ajaxmescreate_pickpoint<?=$ORDER->order_id?>></span>
+ </p>
+ <p>
+ <label>Постамат</label> <input type=text class = "readonly_input" name=pp_id  size="10" readonly value= "<?=$ORDER->pp_id?>">
+ <input type=text class = "readonly_input" name=pp_name  size="40" readonly value= "<?=htmlspecialchars($ORDER->pp_name)?>">
+ <label>Адрес</label> <input type=text name=pp_address class = "readonly_input" size="40" readonly value= "<?=htmlspecialchars($ORDER->pp_address)?>">
+ </p>
+ <p>
+ <label>Номер отправления</label> <strong><span id=invoicenumber<?=$ORDER->order_id?>><?=$ORDER->pp_invoicenumber?></span></strong>
+ <label>Штрихкод</label> <strong><span id=barcode<?=$ORDER->order_id?>><?=$ORDER->pp_barcode?></span></strong>
+ <label>Этикетка</label> <strong><span id=label<?=$ORDER->order_id?>><a href="data/pickpoint/<?=$ORDER->pp_label?>"><?=$ORDER->pp_label?></a></span></strong>
+ </p>
+ <p>
+ <a href="javascript:postAction('create_pickpoint','create_pickpoint','<?=$ORDER->order_id?>')"><img src="images/dt_pickpoint.png" alt="Сохранить изменения">Создать отправление</a>
+</p>
+ <p>
+ <label>ФИО получателя</label> <input type=text name=pp_client_name  size="40" value= "<?=$ORDER->name?>">
+ </p>
+ <p>
+ <label>Телефон</label> <input type=text name=pp_phone  size="40" value= "<?=$ORDER->phone?>">
+ </p>
+ <p>
+ <label>Email</label> <input type=text name=pp_email  size="40" value= "<?=$ORDER->email?>">
+ </p>
+ <p>
+ <label>Наложенный платеж</label> <input type=checkbox name=pp_payment  value='PAYMENT' checked>
+ </p>
+ <p>
+ <label>Сумма к оплате</label> <input type=text name=pp_amount  size="10" value= "<?=$ORDER->amount?>"> <label>Стоимость доставки</label> <input type=text name=pp_dlv_amount  size="10" value= "">
+ </p>
+ </div>
+</form>
+</div>

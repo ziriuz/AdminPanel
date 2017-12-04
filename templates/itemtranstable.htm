@@ -1,0 +1,41 @@
+<table>
+<thead>
+<tr>
+<td>Оп</td>
+<td>Резерв</td>
+<td>Склад</td>
+<td>Дата операции</td>
+<td>Размер</td>
+<td>Кол-во</td>
+<!--td>Цена</td-->
+<td>Заказ</td>
+</tr>
+</thead>
+<tbody>
+<?php foreach($ITEM->wrh_transactions as $i=> $ROW):?>
+<tr class=<?=($ROW->dc_flag==1?($ROW->is_reserve==1?'wrh_unreserve':'wrh_in'):($ROW->is_reserve==1?'wrh_reserve':'wrh_out'))?>>
+<td  align=center>
+<?=($ROW->dc_flag==1?'+':'-')?>
+</td>
+<td  align=center>
+ <input type=checkbox <?=($ROW->is_reserve==1?'checked':'')?>>
+</td>
+<td>
+<?=$ROW->wrh_name?>
+</td>
+<td>
+<?=$ROW->opr_time?>
+</td>
+<td>
+<?=$ROW->ctg_name?>
+</td>
+<td  align=center>
+<?=$ROW->quantity?> <?=$ROW->um_name?>
+</td>
+<td  align=center>
+<?=$ROW->order_id?>
+</td>
+</tr>
+<?php endforeach;?>
+</tbody>
+</table>

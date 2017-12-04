@@ -1,0 +1,46 @@
+
+       <div class=orderprint>
+       <br><i><h3> Заказ №<?=$ORDER->order_id?> от <?=$ORDER->order_date?> </h3></i>
+       <br>
+       <table class=PrdText>
+                <tr><td><b>ФИО</b><td><?=$ORDER->name?>
+                <tr><td><b>E-mail</b><td><?=$ORDER->email?>
+                <tr><td><b>Конт. телефон</b><td><?=$ORDER->phone?>
+                <tr><td><b>Адрес</b><td><?=$ORDER->address?>
+                <tr><td><b>Комментарии</b><td><?=$ORDER->note?>
+       </table>
+       <?php if($ORDERITEMS):?>
+       <br><b>Заказ:</b>
+         <table cellspacing=0 cellpadding=0 border=1>
+         <tr>
+              <td align=left> Наименование </td>
+              <td align=center> Цена         </td>
+              <td align=center> Количество   </td>
+              <td align=center> Стоимость    </td>
+         </tr>
+         <?php foreach ($ORDERITEMS as $i => $ORDERITEM):?>
+           <?php $ITEM = new Item($ORDERITEM->nmcl_id);?>
+           <tr class="<?=($ORDERITEM->deleted==0?'':'hidden')?>"><td align=left><?=(strlen($ORDERITEM->nmcl_name)>0?$ORDERITEM->nmcl_name:$ITEM->name)?><a href=index.php?fitem_id=<?=$ORDERITEM->nmcl_id?>>...</a>
+                 <?=(strlen($ORDERITEM->ctg_name)>0?'<br>Размер: '.$ORDERITEM->ctg_name:'')?>
+                 <td align=center nowrap> <?=$ORDERITEM->price?> руб.
+                 <td align=center nowrap> <?=$ORDERITEM->quantity?>
+                 <td align=center nowrap> <b> <?=$ORDERITEM->amount?> руб.</b>
+           </tr>
+         <?php endforeach;?>
+           <tr> <td align=left nowrap> Доставка
+                 <td>
+                 <td>
+                <td align=center nowrap> <b> <?=$DELIV_PRICE?> <?=($DELIV_PRICE>0?'руб.':'')?></b>
+           </tr>
+           <tr> <td align=right nowrap colspan=3> <b>Итого к оплате:</b>
+                <td align=center nowrap> <b> <?=$ORDER->amount+$DELIV_PRICE?> руб.</b>
+           </tr>
+         </table>
+       <?php endif?>
+<br>
+<br>Подпись покупателя__________Дата__________
+<br>Возврат или обмен товара возможен в течение 7 дней после получения товара
+<br>Оставить отзыв о товаре можно на сайте www.mycomanda.com
+<hr>
+       </div>
+

@@ -1,0 +1,20 @@
+<div class=editform>
+<form  method="post" name=del_category<?=$fitem_id?>>
+ <div class=blockedit>
+ <input type="hidden" name="fid" value="<?=$CATEGORY->id?>"/>
+ <input type="hidden" name="action" value="del_category"/>
+ <!--input type="submit" value="Сохранить" class="PrdButton" onclick="file_send('modifyitem<?=$CATEGORY->id?>')"/-->
+ <div class="toolbar">
+  Элемент: <b><?=$CATEGORY->name?></b> (id=<?=$fitem_id?>) будет УДАЛЕН НАВСЕГДА! 
+  <br>
+  C этим элементом связано <font color=red><?=$CATEGORY->nmcl_count?></font> номенклатуры
+  <br>
+  <font color=red>Т О Ч Н О &nbspХ О Ч Е Ш Ь &nbspУ Д А Л И Т Ь?</font>  
+  <a href="javascript:postAction('del_category','category','<?=$fitem_id?>')">Да</a> |
+  <a href="javascript:changeEditMode('<?=$fitem_id?>','category','view')">Нет</a> |
+  <a href="javascript:changeEditMode('<?=$fitem_id?>','category','view')">Незнаю</a>
+  </center>
+ </div>
+ </div>
+</form>
+</div>

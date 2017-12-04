@@ -1,0 +1,17 @@
+<div class=label>
+<!--div class="barcode">
+<?=$label->label_code?>
+</div-->
+<div class=barcode>
+<img src="lib/code128/ex.php?code=<?=$label->label_code?>&size=60" />
+</div>
+<div class="label-code" style="font-size: 14px; margin-top:3px;margin-bottom:3px"><?=$label->label_code?></div>
+<div class="label-param">
+<p>ИП Валиева А.Т
+<p style="font-size:12px">арт. <?=$label->alt_code?>. размер:  <?=$label->size_name?></p>
+<p style="font-size:12px">cостав:  <?=$label->composition?><img style = "float:right" src="images/eac.jpg"/></p>
+<p style="font-size:12px">страна производства: РФ</p>
+<p style="font-size:12px">дата: <?=$label->prod_date?></p>
+<p style="font-size:12px">адр: г.Москва, Алтуфьевское ш.37к22</p>
+</div>
+</div>

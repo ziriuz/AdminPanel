@@ -1,0 +1,846 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//RU" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html lang="ru,en"><head>
+    <title>Панель управления магазином</title>
+    <meta content="text/html; charset=windows-1251" ;="" charset="windows-1251" http-equiv="Content-Type">
+    <link rel="stylesheet" href="orders_files/prd_main.css">
+    <!--[if IE7]><link rel="stylesheet" type="text/css" href="prd_main_ie.css" media="all" /><![endif]-->
+    <script language="JavaScript" src="orders_files/ajax.js"></script>
+
+
+ 	<script type="text/javascript" src="extjs/adapter/ext/ext-base.js"></script>
+    <script type="text/javascript" src="extjs/ext-all.js"></script>
+    <script type="text/javascript" src="qtips.js"></script>
+    <link rel="stylesheet" type="text/css" href="extjs/resources/css/ext-all.css" />
+	<link rel="stylesheet" type="text/css" href="qtips.css" />
+</head>
+<body>
+<!-- .......................... Заголовок .......................... -->
+<div id="TitleBar">
+		<h1>Панель управления</h1>
+</div>
+<div id="menuMain">
+  <a href="http://mycomanda.com/admin/index.php">Каталог</a> |
+  <a href="http://mycomanda.com/admin/orders.php">Заказы</a> |
+  <a href="http://mycomanda.com/admin/articles.php">Статьи</a> |
+  <a href="http://mycomanda.com/admin/stat.php">Статистика</a> |
+  <a href="http://mycomanda.com/admin/warehouse.php">Склад</a>
+</div>
+
+<div id="contMain">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+ <tbody><tr>
+  <!-- .......................... Левое меню .......................... -->
+  <td valign="top" width="170px">
+    <div class="nav">
+    <h3>Заказы</h3>
+    <div class="navItem">
+      <img src="orders_files/status0.gif"> Новый
+      <br><img src="orders_files/status1.gif"> Подтвержден
+      <br><img src="orders_files/status2.gif"> Изготавливается в цеху
+      <br><img src="orders_files/status3.gif"> Передан курьеру
+      <br><img src="orders_files/status4.gif"> Отправлен по почте
+      <br><img src="orders_files/status5.gif"> Выполнен
+      <br><img src="orders_files/status6.gif"> Отменен
+    </div>
+		  
+    <div class="navItem">
+		  <form method="post">
+      <label><u>Фильтр списка заказов</u></label>
+			<br><input value="0" name="f_status[]" checked="checked" type="checkbox"> Новый
+      <br><input value="1" name="f_status[]" checked="checked" type="checkbox"> Подтвержден
+      <br><input value="2" name="f_status[]" checked="checked" type="checkbox"> Изготавливается в цеху
+      <br><input value="3" name="f_status[]" checked="checked" type="checkbox"> Передан курьеру
+      <br><input value="4" name="f_status[]" checked="checked" type="checkbox"> Отправлен по почте
+      <br><input value="5" name="f_status[]" type="checkbox"> Выполнен
+      <br><input value="6" name="f_status[]" type="checkbox"> Отменен
+			<input name="f_actoin" value="APPLY_FILTER" type="hidden">
+			<br><input value="Применить" type="submit">
+			</form>			
+    </div>
+   </div>
+  </td>
+  <!-- .......................... Содержимое .......................... -->
+  <td valign="top">
+    <div id="catContent">
+	
+	
+	<div id="leftCallout" class="tip-target" style="width: 150px;">Anchor right, rich content</div>	
+	<div id="ajax-tip" class="tip-target">Ajax ToolTip</div>
+
+	<div style="display:none;">
+        <div id="content-tip">
+            <ul>
+                <li>5 bedrooms</li>
+                <li>2 bathrooms</li>
+                <li>Large backyard</li>
+                <li>Close to transport</li>
+            </ul>
+            <div class="x-clear"></div>
+            <img src="images/house.jpg" alt="Website Thumbnail" />
+        </div>
+    </div>
+
+     <div class="searchform">
+     <form>
+      <label>ID заказа</label>
+      <input name="forder_id" type="text">
+      <input value="Найти" type="submit">
+      <em></em>
+     </form>
+     </div>
+     <br>
+          <h3> Заказы </h3>
+     <br>
+     <div class="orderlist">
+     <form method="post">
+     <input name="f_action" value="CHANGE_STATUS" type="hidden">
+      <label>Изменить статус для выделенных на</label>
+      <select name="f_status">
+       <option selected="selected" value="0"> Новый </option>
+       <option value="1"> Подтвержден </option>
+       <option value="2"> Изготавливается в цеху </option>
+       <option value="3"> Передан курьеру</option>
+       <option value="4"> Отправлен по почте </option>
+       <option value="5"> Выполнен</option>
+       <option value="6"> Отменен</option>
+      </select>
+      <input value="Применить" type="submit">
+     <table>
+      <tbody><tr valign="top">
+      <td><b></b></td><td><b>ID</b></td><td><b></b></td><td nowrap="nowrap"><b>Дата</b></td><td><b>Имя</b></td><td width="100px"><b>email</b></td>
+      <td><b>Телефон</b></td><td><b>Адрес</b></td><td><b>Сумма</b></td><td><b>Примечание</b></td><td><b>Доп. Сведения</b></td>
+     </tr>
+
+               <tr valign="top">
+      <td>
+        <input name="f_order_id[]" value="537" type="checkbox">
+      </td>
+      <td>
+        <a href="http://mycomanda.com/admin/orders.php?forder_id=537">
+        537</a>
+      </td>
+      <td>
+        <img src="orders_files/status4.gif">
+      </td>
+      <td nowrap="nowrap">
+        2012-01-07      </td>
+      <td>
+        Борминская Анна Евгеньевна      </td>
+      <td>
+        deana@mail.ru      </td>
+      <td>
+        89033039434      </td>
+      <td>
+        443013 г. Самара, пр. Карла Маркса д.49 кв.135      </td>
+      <td>
+        <div id="ajax-tip537" class="tip-target" onclick="showItems(537); return false;"  >2380</div>      </td>
+      <td>
+        Добрый день. С праздником Рождества Вас! Хочу воспользоваться 
+Вашим предложением о 33% скидке в этот день, заказав 2 флисовые куртки 
+(44р женская, 52 - мужская).      </td>
+      <td>
+        1594 + доставка      </td>
+     </tr>
+               <tr valign="top">
+      <td>
+        <input name="f_order_id[]" value="536" type="checkbox">
+      </td>
+      <td>
+        <a href="http://mycomanda.com/admin/orders.php?forder_id=536">
+        536</a>
+      </td>
+      <td>
+        <img src="orders_files/status4.gif">
+      </td>
+      <td nowrap="nowrap">
+        2012-01-05      </td>
+      <td>
+        Шаламаева Елена Владимировна      </td>
+      <td>
+        Lena0555@yandex.ru      </td>
+      <td>
+        89606397577      </td>
+      <td>
+        308012, г.Белгород, ул.Губкина, д.16-Б, кв.183      </td>
+      <td>
+       <div id="ajax-tip536" onclick="showItems(536); return false">1980</div>     </td>
+      <td>
+              </td>
+      <td>
+        12756646017654      </td>
+     </tr>
+               <tr valign="top">
+      <td>
+        <input name="f_order_id[]" value="535" type="checkbox">
+      </td>
+      <td>
+        <a href="http://mycomanda.com/admin/orders.php?forder_id=535">
+        535</a>
+      </td>
+      <td>
+        <img src="orders_files/status4.gif">
+      </td>
+      <td nowrap="nowrap">
+        2012-01-04      </td>
+      <td>
+        Кравченко Оксана Николаевна      </td>
+      <td>
+        roksi65@list.ru      </td>
+      <td>
+        89600199082      </td>
+      <td>
+        163026 г.Архангельск,ул.Победы,дом.114,кв.152      </td>
+      <td>
+        1190      </td>
+      <td>
+              </td>
+      <td>
+        12756646017647      </td>
+     </tr>
+               <tr valign="top">
+      <td>
+        <input name="f_order_id[]" value="528" type="checkbox">
+      </td>
+      <td>
+        <a href="http://mycomanda.com/admin/orders.php?forder_id=528">
+        528</a>
+      </td>
+      <td>
+        <img src="orders_files/status2.gif">
+      </td>
+      <td nowrap="nowrap">
+        2012-01-02      </td>
+      <td>
+        Ярощук  Людмила Валерьевна      </td>
+      <td>
+        Yara-2002@mail.ru      </td>
+      <td>
+        +79086478047      </td>
+      <td>
+        г.Иркутск, м-н Радужный, д.123, кв.35      </td>
+      <td>
+        4770      </td>
+      <td>
+              </td>
+      <td>
+        брюки у меня есть. так что их по - хорошему не надо шить. Но 
+если шотландка у вас отличается от первоначальной, то делаем финт ушами.
+ присылайте раскроенный сарафан и лекало для шотландки. а я сошью из 
+сумок, которые мы шили из шотландки. и закроем уже тему с шотландками 
+насовсем      </td>
+     </tr>
+               <tr valign="top">
+      <td>
+        <input name="f_order_id[]" value="527" type="checkbox">
+      </td>
+      <td>
+        <a href="http://mycomanda.com/admin/orders.php?forder_id=527">
+        527</a>
+      </td>
+      <td>
+        <img src="orders_files/status2.gif">
+      </td>
+      <td nowrap="nowrap">
+        2012-01-02      </td>
+      <td>
+        Наземнова Надежда Сергеевна      </td>
+      <td>
+        nadejda-nazemnova@rambler.ru      </td>
+      <td>
+        89615829123      </td>
+      <td>
+        350012, г.Краснодар, ул.Академика Лукьяненко,28, кв.116      </td>
+      <td>
+        3960      </td>
+      <td>
+              </td>
+      <td>
+        детские 104 и 122      </td>
+     </tr>
+               <tr valign="top">
+      <td>
+        <input name="f_order_id[]" value="526" type="checkbox">
+      </td>
+      <td>
+        <a href="http://mycomanda.com/admin/orders.php?forder_id=526">
+        526</a>
+      </td>
+      <td>
+        <img src="orders_files/status4.gif">
+      </td>
+      <td nowrap="nowrap">
+        2012-01-01      </td>
+      <td>
+        дьякова оксана александровна      </td>
+      <td>
+        pain72@inbox.ru      </td>
+      <td>
+        89190616263      </td>
+      <td>
+        171560 Тверская обл. Калязинский р-н,с.Нерль,ул.Набережная,д.41      </td>
+      <td>
+        1300      </td>
+      <td>
+              </td>
+      <td>
+        12756646017630      </td>
+     </tr>
+               <tr valign="top">
+      <td>
+        <input name="f_order_id[]" value="521" type="checkbox">
+      </td>
+      <td>
+        <a href="http://mycomanda.com/admin/orders.php?forder_id=521">
+        521</a>
+      </td>
+      <td>
+        <img src="orders_files/status4.gif">
+      </td>
+      <td nowrap="nowrap">
+        2011-12-29      </td>
+      <td>
+        Суховерко Ирина       </td>
+      <td>
+        klavdiya_de_valua@inbox.ru      </td>
+      <td>
+        89236412665      </td>
+      <td>
+        656055 Алтайский Край,Барнаул,Исакова,206а-101      </td>
+      <td>
+        200      </td>
+      <td>
+              </td>
+      <td>
+        12756646000892      </td>
+     </tr>
+               <tr valign="top">
+      <td>
+        <input name="f_order_id[]" value="520" type="checkbox">
+      </td>
+      <td>
+        <a href="http://mycomanda.com/admin/orders.php?forder_id=520">
+        520</a>
+      </td>
+      <td>
+        <img src="orders_files/status1.gif">
+      </td>
+      <td nowrap="nowrap">
+        2011-12-29      </td>
+      <td>
+        Хоретоненко Наталья       </td>
+      <td>
+        khoretonenkonm@mail.ru      </td>
+      <td>
+        8-916-515-09-38      </td>
+      <td>
+        Москва, новозаводская ул, д.8, корп.4, кв 142      </td>
+      <td>
+        3490      </td>
+      <td>
+              </td>
+      <td>
+        улитка+марины флиски      </td>
+     </tr>
+               <tr valign="top">
+      <td>
+        <input name="f_order_id[]" value="514" type="checkbox">
+      </td>
+      <td>
+        <a href="http://mycomanda.com/admin/orders.php?forder_id=514">
+        514</a>
+      </td>
+      <td>
+        <img src="orders_files/status3.gif">
+      </td>
+      <td nowrap="nowrap">
+        2011-12-24      </td>
+      <td>
+        Константинова Наталья Александровна      </td>
+      <td>
+        nataly_kon@mail.ru      </td>
+      <td>
+        8-916-304-30-54      </td>
+      <td>
+        Химки, МО, ул. куркинское шоссе, дом 7, кв. 19. первый подъезд, 5 этаж. домофон 19в      </td>
+      <td>
+        1090      </td>
+      <td>
+              </td>
+      <td>
+        мама шей. отвезти нужно до 4 января      </td>
+     </tr>
+               <tr valign="top">
+      <td>
+        <input name="f_order_id[]" value="511" type="checkbox">
+      </td>
+      <td>
+        <a href="http://mycomanda.com/admin/orders.php?forder_id=511">
+        511</a>
+      </td>
+      <td>
+        <img src="orders_files/status2.gif">
+      </td>
+      <td nowrap="nowrap">
+        2011-12-24      </td>
+      <td>
+        Клавдия Тимофеевна       </td>
+      <td>
+        -      </td>
+      <td>
+        (903) 215 83 56      </td>
+      <td>
+        Хорошевское шоссе 7 стр2, кв 56, этаж 4, подъезд 1, код 56.      </td>
+      <td>
+        1580      </td>
+      <td>
+        в январе      </td>
+      <td>
+        голубые флиски 128 и 134      </td>
+     </tr>
+               <tr valign="top">
+      <td>
+        <input name="f_order_id[]" value="508" type="checkbox">
+      </td>
+      <td>
+        <a href="http://mycomanda.com/admin/orders.php?forder_id=508">
+        508</a>
+      </td>
+      <td>
+        <img src="orders_files/status4.gif">
+      </td>
+      <td nowrap="nowrap">
+        2011-12-22      </td>
+      <td>
+        Иванова Юлия Александровна      </td>
+      <td>
+        Julia.aleks.ivanova@gmail.com      </td>
+      <td>
+        +7 911 231 9999      </td>
+      <td>
+        193318, Санкт-Петербург, Ул. Джона Рида, д. 8 кв 172      </td>
+      <td>
+        1090      </td>
+      <td>
+        Рост ок 185      </td>
+      <td>
+              </td>
+     </tr>
+               <tr valign="top">
+      <td>
+        <input name="f_order_id[]" value="501" type="checkbox">
+      </td>
+      <td>
+        <a href="http://mycomanda.com/admin/orders.php?forder_id=501">
+        501</a>
+      </td>
+      <td>
+        <img src="orders_files/status2.gif">
+      </td>
+      <td nowrap="nowrap">
+        2011-12-22      </td>
+      <td>
+        Голозуб Оксана       </td>
+      <td>
+        go@sviaz-bank.ru      </td>
+      <td>
+        +79164104008      </td>
+      <td>
+        Народного ополчения,32. Офис Связь-банка      </td>
+      <td>
+        3090      </td>
+      <td>
+              </td>
+      <td>
+        Коричн флис Не срочно! Но в январе должно быть
+детская флиска 92, муж 48, пончо 44
+позвонить 8 января      </td>
+     </tr>
+               <tr valign="top">
+      <td>
+        <input name="f_order_id[]" value="499" type="checkbox">
+      </td>
+      <td>
+        <a href="http://mycomanda.com/admin/orders.php?forder_id=499">
+        499</a>
+      </td>
+      <td>
+        <img src="orders_files/status1.gif">
+      </td>
+      <td nowrap="nowrap">
+        2011-12-21      </td>
+      <td>
+        Ершова Светлана       </td>
+      <td>
+        svetlanaershova@yandex.ru      </td>
+      <td>
+        9258643709      </td>
+      <td>
+        Парусный пр-д. д.5      </td>
+      <td>
+        5060      </td>
+      <td>
+        Курьеру звонить за 1 час      </td>
+      <td>
+        позвонить, если будут одинаковые пижамы. особенно нужны винипухи. Пока ничего не везти      </td>
+     </tr>
+               <tr valign="top">
+      <td>
+        <input name="f_order_id[]" value="492" type="checkbox">
+      </td>
+      <td>
+        <a href="http://mycomanda.com/admin/orders.php?forder_id=492">
+        492</a>
+      </td>
+      <td>
+        <img src="orders_files/status4.gif">
+      </td>
+      <td nowrap="nowrap">
+        2011-12-19      </td>
+      <td>
+        Богданова Мария       </td>
+      <td>
+        bogmasha@gmail.com      </td>
+      <td>
+        89218904686      </td>
+      <td>
+        187026,Никольское, Советский пр. 225 кв. 36      </td>
+      <td>
+        1190      </td>
+      <td>
+              </td>
+      <td>
+        1275664503105      </td>
+     </tr>
+               <tr valign="top">
+      <td>
+        <input name="f_order_id[]" value="485" type="checkbox">
+      </td>
+      <td>
+        <a href="http://mycomanda.com/admin/orders.php?forder_id=485">
+        485</a>
+      </td>
+      <td>
+        <img src="orders_files/status2.gif">
+      </td>
+      <td nowrap="nowrap">
+        2011-12-17      </td>
+      <td>
+        Аюпова Гульшат Фаритовна      </td>
+      <td>
+        gulia-n7@yandex.ru      </td>
+      <td>
+        89220566354      </td>
+      <td>
+        629350, Ямало-Ненецкий автономный округ, Тазовский район, п.Тазовский, ул.Маргулова, д.8.      </td>
+      <td>
+        2565      </td>
+      <td>
+              </td>
+      <td>
+        шей все, ободок есть      </td>
+     </tr>
+               <tr valign="top">
+      <td>
+        <input name="f_order_id[]" value="478" type="checkbox">
+      </td>
+      <td>
+        <a href="http://mycomanda.com/admin/orders.php?forder_id=478">
+        478</a>
+      </td>
+      <td>
+        <img src="orders_files/status4.gif">
+      </td>
+      <td nowrap="nowrap">
+        2011-12-15      </td>
+      <td>
+        Носкова Наталия       </td>
+      <td>
+        nataliy@bk.ru      </td>
+      <td>
+        89119643977      </td>
+      <td>
+        Санкт-Петербург, Инженерная ул, д. 6      </td>
+      <td>
+        3160      </td>
+      <td>
+              </td>
+      <td>
+        10756445018854      </td>
+     </tr>
+               <tr valign="top">
+      <td>
+        <input name="f_order_id[]" value="472" type="checkbox">
+      </td>
+      <td>
+        <a href="http://mycomanda.com/admin/orders.php?forder_id=472">
+        472</a>
+      </td>
+      <td>
+        <img src="orders_files/status4.gif">
+      </td>
+      <td nowrap="nowrap">
+        2011-12-12      </td>
+      <td>
+        Плюснина Любовь Викторовна      </td>
+      <td>
+        Venera-Love86@mail.ru      </td>
+      <td>
+        89500724548      </td>
+      <td>
+        Россия г.Ангарск 212-6-28      </td>
+      <td>
+        1380      </td>
+      <td>
+              </td>
+      <td>
+        10756445018670
+Мам, шей
+ул фестивальная 665824      </td>
+     </tr>
+               <tr valign="top">
+      <td>
+        <input name="f_order_id[]" value="469" type="checkbox">
+      </td>
+      <td>
+        <a href="http://mycomanda.com/admin/orders.php?forder_id=469">
+        469</a>
+      </td>
+      <td>
+        <img src="orders_files/status4.gif">
+      </td>
+      <td nowrap="nowrap">
+        2011-12-12      </td>
+      <td>
+        Кулибаба Анастасия Николаевна      </td>
+      <td>
+        nastushakulibaba@mail.ru      </td>
+      <td>
+        89041654402      </td>
+      <td>
+        г. Серов ул. Заславского 25 кв. 15      </td>
+      <td>
+        1500      </td>
+      <td>
+              </td>
+      <td>
+        12756646000908      </td>
+     </tr>
+               <tr valign="top">
+      <td>
+        <input name="f_order_id[]" value="446" type="checkbox">
+      </td>
+      <td>
+        <a href="http://mycomanda.com/admin/orders.php?forder_id=446">
+        446</a>
+      </td>
+      <td>
+        <img src="orders_files/status4.gif">
+      </td>
+      <td nowrap="nowrap">
+        2011-12-04      </td>
+      <td>
+        Савина Елена       </td>
+      <td>
+        savichiva@mail.ru      </td>
+      <td>
+        89147815998      </td>
+      <td>
+        Петропавловск-Камчатский, ул. Чубарова 14 кв.23      </td>
+      <td>
+        1480      </td>
+      <td>
+              </td>
+      <td>
+        1275664503399      </td>
+     </tr>
+               <tr valign="top">
+      <td>
+        <input name="f_order_id[]" value="443" type="checkbox">
+      </td>
+      <td>
+        <a href="http://mycomanda.com/admin/orders.php?forder_id=443">
+        443</a>
+      </td>
+      <td>
+        <img src="orders_files/status4.gif">
+      </td>
+      <td nowrap="nowrap">
+        2011-12-03      </td>
+      <td>
+        Винникова Юлия       </td>
+      <td>
+        jslot@mail.ru      </td>
+      <td>
+        -      </td>
+      <td>
+        143090   Московская обл. г. Краснознаменск
+ ул. Краснознаменнная
+ д. 19   кв. 72
+      </td>
+      <td>
+        1090      </td>
+      <td>
+              </td>
+      <td>
+        12756645007304      </td>
+     </tr>
+               <tr valign="top">
+      <td>
+        <input name="f_order_id[]" value="433" type="checkbox">
+      </td>
+      <td>
+        <a href="http://mycomanda.com/admin/orders.php?forder_id=433">
+        433</a>
+      </td>
+      <td>
+        <img src="orders_files/status4.gif">
+      </td>
+      <td nowrap="nowrap">
+        2011-11-25      </td>
+      <td>
+        рослякова анна       </td>
+      <td>
+        roslvv@mail.ru      </td>
+      <td>
+        8 922 705 13 03      </td>
+      <td>
+        456862.Челябинская обл, г Кыштым, п Тайгинка, пер Поселковый д2 кв 17      </td>
+      <td>
+        1200      </td>
+      <td>
+              </td>
+      <td>
+        12756638050249
+пока не знаю какой размер      </td>
+     </tr>
+               <tr valign="top">
+      <td>
+        <input name="f_order_id[]" value="427" type="checkbox">
+      </td>
+      <td>
+        <a href="http://mycomanda.com/admin/orders.php?forder_id=427">
+        427</a>
+      </td>
+      <td>
+        <img src="orders_files/status4.gif">
+      </td>
+      <td nowrap="nowrap">
+        2011-11-22      </td>
+      <td>
+        Жукова Лиана Павловна      </td>
+      <td>
+        vjukov@yandex.ru      </td>
+      <td>
+        +79539002558      </td>
+      <td>
+        174411 Новгородская обл. г. Боровичи, ул. Физкультуры, д. 50 кв. 117      </td>
+      <td>
+        1100      </td>
+      <td>
+              </td>
+      <td>
+        вроде у нас есть эта толстовка. пришли, а. 
+12756645000572      </td>
+     </tr>
+               <tr valign="top">
+      <td>
+        <input name="f_order_id[]" value="425" type="checkbox">
+      </td>
+      <td>
+        <a href="http://mycomanda.com/admin/orders.php?forder_id=425">
+        425</a>
+      </td>
+      <td>
+        <img src="orders_files/status4.gif">
+      </td>
+      <td nowrap="nowrap">
+        2011-11-22      </td>
+      <td>
+        Стрекаловская Ольга Эдуардовна      </td>
+      <td>
+        dominika-87@bk.ru      </td>
+      <td>
+        89630210746      </td>
+      <td>
+        169500 Республика Коми г.Сосногорск ул. Первомайская д.2/3 кв.28      </td>
+      <td>
+        1500      </td>
+      <td>
+              </td>
+      <td>
+        12756645000589
+Размер 46. Вроде готовое платье подойдет, проверь, пояс оби тоже проверь на какой он размер и высылай      </td>
+     </tr>
+               <tr valign="top">
+      <td>
+        <input name="f_order_id[]" value="422" type="checkbox">
+      </td>
+      <td>
+        <a href="http://mycomanda.com/admin/orders.php?forder_id=422">
+        422</a>
+      </td>
+      <td>
+        <img src="orders_files/status4.gif">
+      </td>
+      <td nowrap="nowrap">
+        2011-11-20      </td>
+      <td>
+        иванцова наталья викторовна      </td>
+      <td>
+        natysi22@yandex.ru      </td>
+      <td>
+        89069473000      </td>
+      <td>
+        томская область г. северск ул. ленина д.2 кв.5      </td>
+      <td>
+        2370      </td>
+      <td>
+              </td>
+      <td>
+        ea193863701ru      </td>
+     </tr>
+               <tr valign="top">
+      <td>
+        <input name="f_order_id[]" value="395" type="checkbox">
+      </td>
+      <td>
+        <a href="http://mycomanda.com/admin/orders.php?forder_id=395">
+        395</a>
+      </td>
+      <td>
+        <img src="orders_files/status4.gif">
+      </td>
+      <td nowrap="nowrap">
+        2011-10-28      </td>
+      <td>
+        Андреева  Оксана Александровна      </td>
+      <td>
+        ksucha192007@mail.ru      </td>
+      <td>
+        8-909-875-96-12      </td>
+      <td>
+        682910 п.Переяславка район имени Лазо Хабаровского края ул.Бойко-Павлова, 6-14      </td>
+      <td>
+        2780      </td>
+      <td>
+              </td>
+      <td>
+        Мам, рубашки шей 0526,0612, вельвет НЕ нужен
+12756644008975      </td>
+     </tr>
+          </tbody></table>
+     </form>
+     </div>
+         </div>
+  </td>
+ </tr>
+</tbody></table>
+</div>
+
+<!-- .......................... Подвал .......................... -->
+<div id="FooterBar">
+</div>
+
+
+
+</body></html>

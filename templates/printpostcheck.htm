@@ -1,0 +1,22 @@
+<div class=editform><div class=blockedit>
+<form action = "orders.php?forder_id=<?=$forder_id?>&action=PRINT_POST" method = post>
+<table><tr><td>
+<tr><td><label>Сумма: </label>        <td> <input name=amount type=text value = "<?=$postTrans->amount?>">
+<tr><td><br><label>Кому: </label>     <td> <input name=toName type=text size=60 value="<?=$postTrans->toName?>">
+<tr><td><br><label>Куда: </label>     <td> <input name=toAddress type=text size=60  value = "<?=$postTrans->toAddress?>">
+<tr><td><br><label>Индекс: </label>   <td> <input name=toIndex type=text size=60  value = "<?=$postTrans->toIndex?>">
+<tr><td><br><label>ИНН: </label>      <td> <input name=toInn type=text size=60  value = "<?=$postTrans->toInn?>">
+<tr><td><br><label>Кор.счет.: </label><td> <input name=toKor type=text size=60  value = "<?=$postTrans->toKor?>">
+<tr><td><br><label>Банк: </label>     <td> <input name=toBank type=text size=60  value = "<?=$postTrans->toBank?>">
+<tr><td><br><label>Расч.счет: </label> <td><input name=toAccount type=text size=60  value = "<?=$postTrans->toAccount?>">
+<tr><td><br><label>БИК: </label> <td><input name=toBik type=text size=60  value = "<?=$postTrans->toBik?>">
+<tr><td><hr><td><hr>
+<tr><td><br><label>От кого, фамилия: </label> <td><input name=fromName0 type=text size=60  value = "<?=$postTrans->fromName[0]?>">
+<tr><td><br><label>От кого, Имя Отчество: </label><td> <input name=fromName1 type=text size=60  value = "<?=$postTrans->fromName[1]?>">
+<tr><td><br><label>Адрес, строка 1: </label> <td><input name=fromAddress0 type=text size=60  value = "<?=$postTrans->fromAddress[0]?>">
+<tr><td><br><label>Адрес, строка 2: </label> <td><input name=fromAddress1 type=text size=60  value = "<?=$postTrans->fromAddress[1]?>">
+<tr><td><br><label>Индекс: </label> <td><input name=fromIndex type=text size=60  value = "<?=$postTrans->fromIndex?>">
+<tr><td><br><input type=submit name="print" value='Печать'>
+</table>
+</form>
+</div></div>

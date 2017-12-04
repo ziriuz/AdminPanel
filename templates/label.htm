@@ -1,0 +1,14 @@
+<div class=label>
+<!--div class="barcode">
+<?=$label->label_code?>
+</div-->
+<div class=barcode>
+<img src="lib/code128/ex.php?code=<?=$label->label_code?>">
+</div>
+<div class="label-code"><?=$label->label_code?></div>
+<div class="label-param">
+<p>Артикул: <?=$label->alt_code?></p>
+<p>Цвет:  <?=$label->color_name?></p>
+<p>Размер:  <?=$label->size_name?></p>
+</div>
+</div>

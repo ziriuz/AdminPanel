@@ -1,0 +1,50 @@
+<table>
+<?php if(!$ISAJAX):?>
+<thead>
+<tr>
+<td><label>Номенклатура</label></td>
+<td><label>Размер</label></td>
+<td><label>Кол-во</label></td> 
+<td><label>Ед.изм.</label></td>
+<!--td><label>Цена</label></td-->
+<td><label>Вид ТМЦ</label></td>
+</tr>
+</thead>
+<?php endif;?>
+<tr>
+<td><input id=fnmcl_id<?=$NEWTRANROW?> type=hidden name=fnmcl_id[]  size="20" value="">
+    <a href="javascript:changeEditMode(<?=$NEWTRANROW?>,'findnmcl','edit','item<?=$NEWTRANROW?>')">
+	<img src="images/btn-find.jpg" alt="Найти товар"></a>
+    <input id=item<?=$NEWTRANROW?> type=text name=fnmcl_name[]  size="20" value="" onkeyup = "changeEditMode(<?=$NEWITEM?>,'findnmcl','edit','item<?=$NEWITEM?>')">
+</td>
+<td>
+   <select name=fctg_id[]>
+	<option value=''> </option>
+    <?php foreach($CATEGORY as $id=>$name):?>
+	<option value=<?=$id?>><?=$name?></option>
+	<?php endforeach;?>
+   </select>
+</td>
+<td>
+   <input type=text name=fquantity[]  size="8" value="1">
+</td>
+<td>
+    <select name=fum_id[]>
+    <?php foreach($UNIT as $id=>$name):?>
+	<option value=<?=$id?>><?=$name?></option>
+	<?php endforeach;?>
+   </select>
+   <input type=hidden name=fprice[]  size="10" value="0">
+</td>
+<td>
+   <select name=fgoods_type_id[]>
+    <?php foreach($GOODS_TYPE as $id=>$name):?>
+	<option value=<?=$id?>><?=$name?></option>
+	<?php endforeach;?>
+   </select>
+</td>
+</tr>
+<tr><td colspan=7><span id=ajaxmesfindnmcl<?=$NEWTRANROW?>></span>
+	<div id=findnmcl<?=$NEWTRANROW?>></div>
+</td></tr>
+</table>

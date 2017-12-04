@@ -1,0 +1,12 @@
+{"success":true,
+"token":"<?=$token?>",
+"message":"<?=$message?>",
+"data":{"message":"<?=$message?>",
+ "order_id":"<?=$order['order_id']?>",
+ "transp_number":"<?=$order['transp_number']?>",
+ "transp_dest_code":"<?=$order['transp_dest_code']?>",
+ "transp_order_date":"<?=$order['transp_order_date']?>",
+ "transp_order_status":"<?=$order['transp_order_status']?>",
+ "cash_on_delivery":"<?=$order['cash_on_delivery']?>"
+}
+}

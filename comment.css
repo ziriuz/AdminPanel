@@ -1,0 +1,36 @@
+.comments{padding:20px}
+* html .comm{zoom:1}
+.comm{position:relative;display:block;background:#fff;border:1px solid #bfbfbf}
+.comm-rt,.comm-rb,.comm-lb,.comm-lt{position:absolute;overflow:hidden}
+.comm-rt,.comm-rb{right:-1px}
+.comm-lb,.comm-lt{left:-1px}
+.comm-lt,.comm-rt{top:-1px}
+.comm-rb,.comm-lb{bottom:-1px}
+.comm-rt i,.comm-rb i,.comm-lb i,.comm-lt i{position:absolute;width:50px;height:50px;background-repeat:no-repeat}
+.comm-rt i{top:0}
+.comm-lb i{left:0}
+.comm-lt i{top:0;left:0}
+.comm-body{display:block}
+.comm-body{padding:6px 12px 6px 6px;}
+.comm-rt,.comm-rb,.comm-lb,.comm-lt{width:5px;height:5px}
+.comm-rt i,.comm-rb i,.comm-lb i,.comm-lt i{background:url(../prd_images/corners-gray.jpg)}
+.comm-rt i{left:-5px}
+.comm-rb i{top:-5px;left:-5px}
+.comm-lb i{top:-5px}
+.quote-owner {
+    background: url("../prd_images/tail.png") no-repeat scroll bottom left transparent;
+    margin-left: 20px;
+    padding: 0px 0 7px 25px;
+    position: relative;
+    bottom: -1px;
+    z-index:100;
+}
+.quote-owner strong{
+    color: #2F609C;
+    font-family: tahoma,arial,helvetica,sans-serif;
+    font-size: 12px;
+}
+.quote-owner span {
+    color: #F8822A;
+}
+.comm-body{background-color:#ffffcf}

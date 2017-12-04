@@ -1,0 +1,28 @@
+<div class=editform>
+<form  method="post" name=addwrhtrans>
+ <div class=blockedit>
+ 
+ <input type="hidden" name="action" value="add_wrh_transactions"/>
+ <input type="submit" value="Сохранить" class="PrdButton">
+ <input type="hidden" name="fwrh_id" value="<?=$WRH_ID?>"/>
+ <input type="hidden" name="fdc_flag" value="<?=$dc_flag?>"/>
+  <input type="hidden" name="fis_reserve" value="<?=$is_reserve?>"/>
+  <p><label>Оформить <font color=#aa0000><?=$is_reserve==1?($dc_flag==-1?'Резерв':'Отмену резерва'):($dc_flag==1?'Приход':'Расход')?></font>. Cклад <font color=#aa0000><?=$WRHNAME?></font></label></p>
+  <p><label>Дата операции</label><input type=text name=fopr_time  size="20" value="<?=date('Y-m-d')?>"></p>
+<div class=blockeditrows>
+<div id=addwrhtable class=blockeditrows>
+<?php require("templates/addwrhrow.htm");?>
+</div>
+</div>
+
+ <div class="toolbar">
+  <a href="javascript:changeEditMode('0','newwrhtran','edit')"><img src="images/btn-add.jpg" alt="Добавить строку"></a>
+  <span id=ajaxmesnewwrhtran0></span>
+ </div>
+
+
+ 
+ </div>
+</form>
+
+</div>

@@ -1,0 +1,68 @@
+<div class=editform>
+<form  method="post" name=edit_document<?=$DOC->id?><?=($DOC->id==0?$DOCTP:'')?>>
+ <div class=blockedit>
+ <input type="hidden" id = "fid" name="fid" value="<?=$DOC->id?>"/>
+ <input type="hidden" name="action" value="edit_document"/>
+ <input type="hidden" name="fdoctp_id" value="2"/>
+ <input type="hidden" name="fwrh_action" value="<?=$WRH_ACTION?>"/>
+ <div class="toptoolbar">
+  <a href="javascript:changeEditMode('<?=$DOC->id?>','document','view')"><img src="images/btn-view.jpg" alt="Перейти в режим просмотра"></a>
+  <a href="javascript:postAction('edit_document','document','<?=$DOC->id?><?=($DOC->id==0?$DOCTP:'')?>')"><img src="images/btn-save.jpg" alt="Сохранить изменения"></a>
+  <a href="javascript:changeEditMode('<?=$DOC->id?>','loaddocitems','edit')">Утвердить</a>
+  <em id=ajaxmesdocument<?=$DOC->id?><?=($DOC->id==0?$DOCTP:'')?>></em>
+ </div>
+ <table>
+ <tr><td align=right>
+      <label>Номер документа</label></td><td><input type=text name=fdoc_number size="16" value="<?=$DOC->doc_number?>">
+      <label>Дата документа</label><input type=text name=fdoc_date size="16" value="<?=$DOC->doc_date?>"></td>
+ </tr>
+ <tr><td align=right><label>Статус</label></td><td><input type=text name=fstatus size="10" value="<?=$DOC->status?>"></td>
+ </tr>
+ <tr><td align=right><label>Примечание</label></td><td><textarea name=fnote rows=5 cols=80 ><?=$DOC->note?></textarea></td>
+ <tr><td align=right><label>Пересылка из </label></td><td>
+ <select name=fwrh_from value="<?=$DOC->wrh_from?>">
+  <?php foreach($WRH as $id=>$wrh):?>
+    <option value=<?=$wrh->id?>><?=$wrh->name?></option>
+  <?php endforeach;>
+ </select>
+ <label>на </label> <input type=text name=fwrh_to size="10" value="<?=$DOC->wrh_to?>"></td>
+ </tr>
+ </table>
+ <div class="toptoolbar">
+  <a href="javascript:changeEditMode('<?=$DOC->id?>','loaddocitems','wrh-rests')">загрузить остатки</a>
+  <span id=ajaxmesloaddocitems<?=$DOC->id?>></span>
+ </div>
+ 
+<!-- ====================  строки документа ====================== -->
+<div class=blockeditrows>
+<table>
+<thead>
+<tr>
+<td><label>Заказ</label></td>
+<td><label>Номенклатура</label></td>
+<td><label>Размер</label></td>
+<td><label>Кол-во</label></td> 
+</tr>
+</thead>
+</table>
+<?php foreach($DOC->items as $NEWITEM=>$DOCITEM):?>
+<?php require("templates/forms/adddocitem.htm");?>
+<?php endforeach;?>
+
+<!-- ==================== добавление новой строки документа ====================== -->
+<div id=adddocitemtable class=blockeditrows>
+   <?php //require("templates/forms/adddocitem.htm");?>
+</div>
+</div>
+
+<div class="toolbar">
+  <a href="javascript:changeEditMode('0','newdocitem','edit')"><img src="images/btn-add.jpg" alt="Добавить строку"></a>
+  <span id=ajaxmesnewdocitem0></span>
+</div>
+<!-- ============================================================== -->
+
+
+ </div>
+</form>
+
+</div>

@@ -1,0 +1,15 @@
+       <link rel="stylesheet" href="label.css"/>
+	   <table>
+         <?php 
+		 $j=0;
+foreach ($labels as $i => $label){
+	if($j%2==0) echo"<tr>";
+     echo "<td>"; 
+	 require("templates/label.htm");
+	 echo "</td>";
+  if($j%2==1) echo"</tr>";
+  $j++;
+  }
+  if($j%2==0) echo"</tr>";
+  ?>
+		 </table>

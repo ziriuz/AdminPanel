@@ -1,0 +1,25 @@
+ <?php foreach ($gaCtgTypes as $sCode => $sName): ?>
+ <li class="filter fclose" id=filter1-<?=$sCode?>>
+  <span onclick="switchClass(document.getElementById('filter1-<?=$sCode?>'), 'fclose'); ">
+  <i> </i><?=$sName?>
+  </span>
+  <div class="filter-content">
+  <div>
+  <span class="toolbar">
+    <a href="javascript:changeEditMode('0<?=$sCode?>','category','edit')"><img src="images/btn-add1.jpg" alt="Перейти в режим редактирования"></a>
+    <em id=ajaxmescategory0<?=$sCode?>></em>
+  </span>
+  <span  id=category0<?=$sCode?>>Добавить элемент</span>
+  </div>
+  <div id=newcategory0<?=$sCode?>>
+  </div>
+  <?php foreach (getCategories($sCode) as $ii => $oCtg):?>
+  <?php 
+    $CATEGORY = new Category($ii);  
+	if ($CATEGORY->id > 0) require('templates/category.htm');
+	else echo '<div>'.$CATEGORY->getMessage().'</div>';  
+  ?>
+  <?php endforeach ?>
+  </div>
+ </li>
+ <?php endforeach ?>

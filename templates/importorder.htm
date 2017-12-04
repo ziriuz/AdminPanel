@@ -1,0 +1,25 @@
+       <?php if($ORDERITEMS):?>
+         <table cellspacing=0 cellpadding=0 border=1>
+         <?php foreach ($ORDERITEMS as $i => $ORDERITEM):?>
+           <?php $ITEM = new Item($ORDERITEM->nmcl_id);?>
+           <tr>
+            <!--A--><td><?=$ITEM->alt_code?></td>
+            <!--B--><td><?=$ITEM->name?></td>
+            <!--C--><td></td>
+            <!--D--><td><?=$ORDERITEM->ctg_name?></td>
+            <!--E--><td></td>
+            <!--F--><td></td>
+            <!--G--><td></td>
+            <!--H--><td><?=$ORDERITEM->quantity?></td>
+            <!--I--><td>0</td>
+            <!--J--><td><?=$ORDERITEM->price?></td>
+            <!--K--><td>copy</td>
+            <!--L--><td>copy</td>
+            <!--M--><td>copy</td>
+            <!--N--><td></td>
+            <!--O--><td>copy</td>
+            <!--P--><td><?=$ORDER->order_id?></td>
+           </tr>
+         <?php endforeach;?>
+         </table>
+       <?php endif?>

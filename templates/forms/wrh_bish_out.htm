@@ -1,0 +1,41 @@
+<h2>Отправить заказы в Москву</h2>
+
+<table>
+<tr>
+<td valign=top nowrap>
+
+  <div>
+  <span class="toolbar">  
+    <a href="warehouse.php?action=wrh_bish_out&action2=add&fdoc_id=0"><img src="images/btn-add1.jpg" alt="Перейти в режим редактирования"></a>
+    <!-- a href="javascript:changeEditMode('0<?=$DOCTP?>','document','edit')"><img src="images/btn-add1.jpg" alt="Перейти в режим редактирования"></a-->
+    <em id=1ajaxmesdocument0<?=$DOCTP?>></em>
+  </span>
+  <span  id=document0<?=$DOCTP?>>Новый документ</span>
+  </div>
+  <div id=newdocument0<?=$DOCTP?>>
+  </div>
+
+<?php foreach($DOCS as $doc_id=>$doc):?>
+  <div id=documentcontent<?=$doc_id?>>
+  <span class="toolbar">
+    <a href="warehouse.php?action=wrh_bish_out&action2=edit&fdoc_id=<?=$doc->id?>"><img src="images/btn-edit1.jpg" alt="Перейти в режим редактирования"></a>
+	<!--a href="javascript:changeEditMode('<?=$doc->id?>','document','edit')"><img src="images/btn-edit1.jpg" alt="Перейти в режим редактирования"></a-->
+    <a href="javascript:changeEditMode('<?=$doc->id?>','document','delete')"><img src="images/btn-del1.jpg" alt="Удалить элемент"></a>
+    <em id=1ajaxmesdocument<?=$doc->id?>></em>
+  </span>
+  <span  id=document<?=$doc->id?>><?=$doc->doc_name?></span>
+  </div>
+<?php endforeach;?>
+
+</td>
+<td>
+ <div><em id=ajaxmesdocumentedit></em></div>
+ <div  id=documentedit></div>
+<?php if($VIEWDOC):?>
+<div>
+<?php require("templates/forms/editdoc_bishout.htm");?>
+</div>
+<?php endif;?>
+</td>
+</tr>
+</table>

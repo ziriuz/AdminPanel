@@ -1,0 +1,88 @@
+       <?php if($ORDERS):?>
+         <table cellspacing=0 cellpadding=0 border=1>
+		 <tr>
+		 <td>	№ П/П	</td>
+<td>	Номер заказа	</td>
+<td>	Штрихкод	</td>
+<td>	Дата доставки	</td>
+<td>	Время доставки с	</td>
+<td>	Время доставки по	</td>
+<td>	Компания отправитель	</td>
+<td>	Контактное лицо отправителя	</td>
+<td>	Город отправителя	</td>
+<td>	Адрес отправителя	</td>
+<td>	Телефон отправителя	</td>
+<td>	Компания получателя	</td>
+<td>	Контактное лицо получателя	</td>
+<td>	Город получателя	</td>
+<td>	Адрес получателя	</td>
+<td>	Телефон получателя	</td>
+<td>	Тип отправления	</td>
+<td>	Режим доставки	</td>
+<td>	Тип оплаты	</td>
+<td>	Оплата получателем	</td>
+<td>	Необходимость возврата	</td>
+<td>	Режим возврата	</td>
+<td>	Вес	</td>
+<td>	Количество	</td>
+<td>	Сумма	</td>
+</tr>
+         <?php foreach($ORDERS as $order_id => $ORDER):?>
+           <?php //$ITEM = new Item($ORDERITEM->nmcl_id);?>
+           <tr>
+            <!--A--><td><?=$ORDER->sid?></td>
+            <!--B--><td><?=$ORDER->sid?></td>
+            <!--C--><td></td>
+            <!--D--><td><?=$ORDER->delivery_dt?></td>
+            <!--E--><td></td>
+            <!--F--><td></td>
+            <!--G--><td>КЛЮВОНОС</td>
+            <!--H--><td></td>
+            <!--I--><td>Москва</td>
+            <!--J--><td>Коминтерна ул., 28/6</td>
+            <!--K--><td>+7 (905) 780-64-46</td>
+            <!--L--><td></td>
+            <!--M--><td><?=$ORDER->name?></td>
+            <!--N--><td></td>
+            <!--O--><td><?=strlen($ORDER->delivery_address)>0?$ORDER->delivery_address:$ORDER->address?></td>
+            <!--P--><td><?=$ORDER->phone?></td>
+			        <td></td>
+			        <td></td>
+			        <td>наличными</td>
+			        <td></td>
+			        <td></td>
+			        <td></td>
+			        <td></td>
+			        <td></td>
+			        <td><?=$ORDER->amount+($ORDER->delivery_total>0?$ORDER->delivery_total:$ORDER->deliv_price)-$ORDER->dis_code?></td>
+           </tr>
+         <?php endforeach;?>
+         </table>
+       <?php endif?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

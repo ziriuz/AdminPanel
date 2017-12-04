@@ -1,0 +1,34 @@
+@font-face {
+    font-family: 'code128';
+    src: url('fonts/code128.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+.barcode{
+  margin-top:20px;
+}
+.label{
+  font-family:Arial;
+  font-size: 14px;
+  text-align:center;
+  display:inline-block;
+  padding:0px;
+  width:70mm;
+  height:49mm;#57mm;
+  padding-top:0mm;
+  vertical-align:middle;
+}
+.label p{
+  margin:0px;
+  padding:0px;
+}
+.label-code{  
+  font-size: 18px;
+  letter-spacing:0.2em;
+  margin-top:8px;
+}
+.label-param{
+display:inline-block;
+text-align:left;
+}
+.label-param p{font-size: 14px;}

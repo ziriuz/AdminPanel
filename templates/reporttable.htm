@@ -1,0 +1,64 @@
+<div class="statreport">
+<h3><?=$REPTITLE?></h3>
+<table>
+<thead>
+<tr align=center>
+<td>id</td>
+<td>Артикул</td>
+<td>Наименование</td>
+<?php if($show_foto == 'checked'):?>
+<td>Фото</td>
+<?php endif;?>
+<?php if($freport == 'MOST_WANTED'||$freport == 'TOGETHER_ORDERED'):?>
+<td>Количество заказов</td>
+<?php endif;?>
+<?php if($freport == 'TOGETHER_ORDERED'):?>
+<td>id (совместно)</td>
+<td>Артикул (совместно)</td>
+<td>Наименование (совместно)</td>
+<?php if($show_foto == 'checked'):?>
+<td>Фото  (совместно)</td>
+<?php endif;?>
+<?php endif;?>
+</tr>
+</thead>
+<?php foreach($REPORTROWS as $i=> $ROW):?>
+<tr>
+<td>
+<a href=index.php?fitem_id=<?=$ROW->nmcl_id?>><?=$ROW->nmcl_id?></a>
+</td>
+<td>
+<?=$ROW->alt_code?>
+</td>
+<td>
+<?=(isset($ROW->name)?$ROW->name:$ROW->nmcl_name)?>
+</td>
+<?php if($show_foto == 'checked'):?>
+<?php
+if (strlen($ROW->foto_name)>0){
+  $s = explode('|',$ROW->foto_name);
+  $img = '<img width=96 src="'.$s[0].'">';
+} else $img = "";
+?>
+<td><?=$img?></td>
+<?php endif;?>
+<?php if($freport == 'MOST_WANTED'||$freport == 'TOGETHER_ORDERED'):?>
+<td><?=$ROW->orders_num?></td>
+<?php endif;?>
+<?php if($freport == 'TOGETHER_ORDERED'):?>
+<td><a href=index.php?fitem_id=<?=$ROW->nn_id?>><?=$ROW->nn_id?></a></td>
+<td><?=$ROW->nn_code?></td>
+<td><?=$ROW->nn_name?></td>
+<?php if($show_foto == 'checked'):?>
+<?php
+if (strlen($ROW->nn_foto)>0){
+  $s = explode('|',$ROW->nn_foto);
+  $img = '<img width=96 src="'.$s[0].'">';
+} else $img = "";
+?>
+<td><?=$img?></td>
+<?php endif;?>
+<?php endif;?>
+<?php endforeach;?>
+</table>
+</div>

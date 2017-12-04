@@ -1,0 +1,68 @@
+ 
+<div class=editform>
+<form  method="post" name=edit_order<?=$ORDER->order_id?>>
+ <div class=blockedit>
+ <input type="hidden" id = "forder_id" name="forder_id" value="<?=$ORDER->order_id?>"/>
+ <input type="hidden" name="action" value="edit_order"/>
+ <div class="toptoolbar">
+           <a href="javascript:changeEditMode('<?=$ORDER->order_id?>','order','view')"><img src="images/btn-view.jpg" alt="Перейти в режим просмотра"></a>
+           <a href="javascript:postAction('edit_order','order','<?=$ORDER->order_id?>')"><img src="images/btn-save.jpg" alt="Сохранить изменения"></a>
+ </div>
+ <div><em id=ajaxmesorder<?=$ORDER->order_id?>></em></div>
+ 
+<!-- ====================  строки документа ====================== -->
+<div class=blockeditrows>
+<!--table>
+<thead>
+<tr>
+<td><label>Заказ</label></td>
+<td><label>Номенклатура</label></td>
+<td><label>Размер</label></td>
+<td><label>Кол-во</label></td> 
+</tr>
+</thead>
+</table-->
+<?php foreach($ORDERITEMS as $NEWITEM=>$ORDERITEM):?>
+<?php require("templates/forms/addorderitem.htm");?>
+<?php endforeach;?>
+
+<!-- ==================== добавление новой строки документа ====================== -->
+<div id=addorderitemtable class=blockeditrows>
+   <?php //require("templates/forms/adddocitem.htm");?>
+</div>
+</div>
+
+<div class="toolbar">
+  <a href="javascript:changeEditMode('0','neworderitem','edit')"><img src="images/btn-add.jpg" alt="Добавить строку"></a>
+  <span id=ajaxmesneworderitem0></span>
+</div>
+<!-- ============================================================== -->
+
+
+ </div>
+</form>
+</div>
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

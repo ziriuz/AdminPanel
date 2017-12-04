@@ -1,0 +1,32 @@
+<div class=editform>
+<form  method="post" name=edit_category<?=$fitem_id?>>
+ <div class=blockedit>
+ <input type="hidden" name="fid" value="<?=$CATEGORY->id?>"/>
+ <input type="hidden" name="action" value="edit_category"/>
+ <!--input type="submit" value="Сохранить" class="PrdButton" onclick="file_send('modifyitem<?=$CATEGORY->id?>')"/-->
+ <div class="toolbar">
+  <a href="javascript:changeEditMode('<?=$fitem_id?>','category','view')"><img src="images/btn-view.jpg" alt="Перейти в режим просмотра"></a>
+  <a href="javascript:postAction('edit_category','category','<?=$fitem_id?>')"><img src="images/btn-save.jpg" alt="Сохранить изменения"></a>
+ </div>
+ <table>
+ <tr><td align=right><label>Название</label></td><td><input type=text name=fname size="80" value="<?=$CATEGORY->name?>"></td>
+ </tr>
+ <tr><td align=right><label>Заголовок HTML</label></td><td><input type=text name=ftitle size="80" value="<?=$CATEGORY->title?>"></td></tr>
+ <!--tr><label>Тип категории</label> 
+    <select name=ftype_id>
+    <?php foreach($CTGTYPES as $id=>$name):?>
+	<option value=<?=$id?> <?=($CATEGORY->type_id==$id?'selected':'')?>><?=$name?></option>
+	<?php endforeach;?>
+   </select>
+ </p-->
+ <tr><td align=right><label>Фоторгафия</label></td><td><input type=text name=ffoto_name size="60" value="<?=$CATEGORY->foto_name?>"></td></tr>
+ <tr><td align=right><label>Статус</label></td><td><input type=text name=fstatus size="10" value="<?=$CATEGORY->status?>">
+ <label>Тип элемента</label><input type=text name=fselect_type size="20" value="<?=$CATEGORY->select_type?>">
+ </td></tr>
+<tr><td align=right><label>Описание</label></td><td><textarea name=fdescription rows=5 cols=80 ><?=$CATEGORY->description?></textarea></td></tr>
+ </table>
+ 
+ </div>
+</form>
+
+</div>

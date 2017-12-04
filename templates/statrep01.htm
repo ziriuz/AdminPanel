@@ -1,0 +1,49 @@
+<div class="statreport">
+<h3>Статистика по номенклатуре</h3>
+<table>
+<thead>
+<tr align=center>
+<td>id</td>
+<td>Артикул</td>
+<td>Наименование</td>
+<td>сессий</td>
+<td>хостов</td>
+<td>просмотров</td>
+<td>заказано</td>
+<td>заказов</td>
+<td>конверсия</td>
+</tr>
+</thead>
+<?php foreach($REPORTROWS as $i=> $ROW):?>
+<tr>
+<td>
+<a href=index.php?fitem_id=<?=$ROW->nmcl_id?>><?=$ROW->nmcl_id?></a>
+</td>
+<td>
+<?=$ROW->alt_code?>
+</td>
+<td>
+<?=$ROW->nmcl_name?>
+</td>
+<td>
+<?=$ROW->csid?>
+</td>
+<td>
+<?=$ROW->cip?>
+</td>
+<td>
+<?=$ROW->cview?>
+</td>
+<td>
+<?=$ROW->csold?>
+</td>
+<td>
+<?=$ROW->corder?>
+</td>
+<td>
+<?=$ROW->conv?>
+</td>
+</tr>
+<?php endforeach;?>
+</table>
+</div>

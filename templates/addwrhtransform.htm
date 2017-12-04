@@ -1,0 +1,52 @@
+<div class=editform>
+<form  method="post" name=addwrhtrans<?=$ITEM->id?>>
+ <div class=blockedit>
+ <input type="hidden" name="fitem_id" value="<?=$ITEM->id?>"/>
+ <input type="hidden" name="action" value="add_wrh_transaction"/>
+ <!--input type="submit" value="Сохранить" class="PrdButton" onclick="file_send('modifyitem<?=$ITEM->id?>')"/-->
+ <div class="toolbar">
+  <a href="javascript:changeEditMode('<?=$ITEM->id?>','newtran','view')"><img src="images/btn-view.jpg" alt="Перейти в режим просмотра"></a>
+  <a href="javascript:addTransaction('<?=$ITEM->id?>')"><img src="images/btn-save.jpg" alt="Сохранить изменения"></a>
+ </div>
+ <p><label>Операция</label>
+   <select name=fdc_flag>
+	<option value=1>Приход</option>
+	<option value=-1>Расход</option>
+   </select>
+ <label>Дата операции</label> <input type=text name=fopr_time  size="20" value="<?=date('Y-m-d')?>">
+ </p>
+ <p><label>Склад</label>
+   <select name=fwrh_id>
+    <?php foreach($WRH as $id=>$name):?>
+	<option value=<?=$id?>><?=$name?></option>
+	<?php endforeach;?>
+   </select>
+   <label>Вид ТМЦ</label>
+   <select name=fgoods_type_id>
+    <?php foreach($GOODS_TYPE as $id=>$name):?>
+	<option value=<?=$id?>><?=$name?></option>
+	<?php endforeach;?>
+   </select>
+ </p>
+ <p>
+ <label>Размер</label>
+   <select name=fctg_id>
+   	<option value=''> </option>
+    <?php foreach($CATEGORY as $id=>$name):?>
+	<option value=<?=$id?>><?=$name?></option>
+	<?php endforeach;?>
+   </select>
+ <label>Количество</label> <input type=text name=fquantity  size="8" value="1">
+   <select name=fum_id>
+    <?php foreach($UNIT as $id=>$name):?>
+	<option value=<?=$id?>><?=$name?></option>
+	<?php endforeach;?>
+   </select>
+ <!--label>Цена</label--> <input type=hidden name=fprice  size="10" value="0">
+ </p>
+ <p><label>Резерв</label><input type=checkbox name=fis_reserve></p>
+ 
+ </div>
+</form>
+
+</div>

@@ -1,0 +1,24 @@
+<h2>Передать заказы в цех</h2>
+
+<table>
+<tr>
+<td valign=top nowrap>
+
+<?php foreach($DOCS as $doc_id=>$doc):?>
+  <div id=documentcontent<?=$doc_id?>>
+  <span class="toolbar">
+    <a href="warehouse.php?action=make_prod_order02&action2=edit&fdoc_id=<?=$doc->id?>"><img src="images/btn-edit1.jpg" alt="Перейти в режим редактирования"></a>
+    <em id=1ajaxmesdocument<?=$doc->id?>></em>
+  </span>
+  <span  id=document<?=$doc->id?>><?=$doc->doc_name?></span>
+  </div>
+<?php endforeach;?>
+
+</td>
+<td>
+ <div><em id=ajaxmesdocumentedit></em></div>
+ <div  id=documentedit></div>
+<?php if($VIEWDOC) require("templates/forms/editdoc02.htm");?>
+</td>
+</tr>
+</table>

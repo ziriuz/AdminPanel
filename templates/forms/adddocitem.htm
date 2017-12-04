@@ -1,0 +1,38 @@
+<table>
+<?php if(false&&!$ISAJAX):?>
+<thead>
+<tr>
+<td><label>Заказ</label></td>
+<td><label>Номенклатура</label></td>
+<td><label>Размер</label></td>
+<td><label>Кол-во</label></td> 
+</tr>
+</thead>
+<?php endif;?>
+<tr>
+<td>
+   <input type=text name=forder[]  size="8" value="<?=$DOCITEM->order_id?>">
+   <input id=line_id<?=$NEWITEM?> type=hidden name=fline_id[]  value="<?=$DOCITEM->line_id?>">
+   <input type=hidden name=frowid[]  value="<?=$NEWITEM?>">
+</td>
+<td><input id=fnmcl_id<?=$NEWITEM?> type=hidden name=fnmcl_id[]  size="20" value="<?=$DOCITEM->nmcl_id?>">
+    <a href="javascript:changeEditMode(<?=$NEWITEM?>,'findnmcl','edit','item<?=$NEWITEM?>')">
+	<span id=ajaxmesfindnmcl<?=$NEWITEM?> style="position:absolute"></span>
+	<img src="images/btn-find.jpg" alt="Найти товар"></a>
+    <input autocomplete="off" id=item<?=$NEWITEM?> type=text name=fnmcl_name[]  size="20" value="<?=$DOCITEM->nmcl_name?>" onkeyup = "changeEditMode(<?=$NEWITEM?>,'findnmcl','edit','item<?=$NEWITEM?>')">
+</td>
+<td>
+   <select name=fctg_id[]>
+	<option value=''> </option>
+    <?php foreach($CATEGORY as $id=>$name):?>
+	<option value=<?=$id?> <?=($DOCITEM->ctg_id==$id?'selected':'')?>><?=$name?></option>
+	<?php endforeach;?>
+   </select>
+</td>
+<td>
+   <input type=text name=fquantity[]  size="8" value="<?=$DOCITEM->quantity?>">
+</td>
+</tr>
+</table>
+<div id=findnmcl<?=$NEWITEM?>></div>
+<div id=ajaxmeseditdoc<?=$NEWITEM?>></div>

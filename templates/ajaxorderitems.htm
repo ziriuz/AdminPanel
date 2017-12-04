@@ -1,0 +1,30 @@
+       <div class=orderprint>
+       <?php if($ORDERITEMS):?>
+         <table cellspacing=0 cellpadding=0 border=1>
+         <tr>
+              <td align=left> Наименование </td>
+              <td align=center> Цена         </td>
+              <td align=center> Количество   </td>
+              <td align=center> Стоимость    </td>
+         </tr>
+         <?php foreach ($ORDERITEMS as $i => $ORDERITEM):?>
+           <?php $ITEM = new Item($ORDERITEM->nmcl_id);?>
+           <tr>  <td align=left> <?=iconv("WINDOWS-1251","UTF-8",$ITEM->name)?><a href=index.php?fitem_id=<?=$ORDERITEM->nmcl_id?>>...</a>
+                 <?=(strlen($ORDERITEM->ctg_name)>0?'<br>Размер: '.iconv("WINDOWS-1251","UTF-8",$ORDERITEM->ctg_name):'')?>
+                 <td align=center nowrap> <?=$ORDERITEM->price?> руб.
+                 <td align=center nowrap> <?=$ORDERITEM->quantity?>
+                 <td align=center nowrap> <b> <?=$ORDERITEM->amount?> руб.</b>
+           </tr>
+         <?php endforeach;?>
+           <tr> <td align=left nowrap> Доставка
+                 <td>
+                 <td>
+                <td align=center nowrap> <b> <?=$DELIV_PRICE?> руб.</b>
+           </tr>
+           <tr> <td align=right nowrap colspan=3> <b>Итого к оплате:</b>
+                <td align=center nowrap> <b> <?=$ORDER->amount+$DELIV_PRICE?> руб.</b>
+           </tr>
+         </table>
+       <?php endif?>
+       </div>
+

@@ -1,0 +1,9 @@
+  <div id=documentcontent<?=$DOC->id?>>
+  <span class="toolbar">
+    <a href="warehouse.php?action=make_prod_order01&action2=add&fdoc_id=<?=$DOC->id?>"><img src="images/btn-edit1.jpg" alt="Перейти в режим редактирования"></a>
+    <a href="javascript:changeEditMode('<?=$DOC->id?>','document','delete')"><img src="images/btn-del1.jpg" alt="Удалить элемент"></a>
+    <em id=ajaxmesdocument<?=$DOC->id?>></em>
+  </span>
+  <span  id=document<?=$DOC->id?>><?=$DOC->doc_name?></span>
+  </div>
+

@@ -1,0 +1,66 @@
+<?php
+ 
+  $COITEMS = array();
+  $COITEMS = getItemsByNmcl($item_id);
+  $c = 4 - count($COITEMS);
+  for ($i=0;$i < $c;$i++)$COITEMS[-1-$i] = 'Добавьте здесь ID';
+?>
+
+<form  method="post" name=<?=$item_id?>>
+ <input type="hidden" name="fiItemID" value="<?=$item_id?>"/>
+ <input type="hidden" name="save_action" value="modify"/>
+ <input type="submit" value="Сохранить" class="PrdButton"/>
+ <?php if($SHOWITEM):?>
+ <input type="submit" value=" << Предыдущий" name="prev_action" class="PrdButton"/>
+ <input type="submit" value="Следующий >> " name="next_action" class="PrdButton"/>
+ <input type="hidden" name="fprev_id" value="<?=$ITEM->prev_id?>"/>
+ <input type="hidden" name="fnext_id" value="<?=$ITEM->next_id?>"/>
+ <?php endif;?>
+ <table>
+  <tr><td><td><td rowspan=10 valign=top>
+   <div class=searchform>
+   <b>Вам может понравиться также:<b>
+   <br><br>
+   <table>
+   <?php foreach ($COITEMS as $coitem_id => $coname):?>
+    <?php $COITEM = new Item($coitem_id);?>
+    <tr><td>
+    <img src="../prd_lib/images/<?=$COITEM->foto_preview[0]?>"  alt="<?=$COITEM->foto_alt?>" height=45>
+    <td>
+    <?=$coname?>
+    <br><input type=text name=facoitems[] value =<?=$coitem_id?> >
+   <?php endforeach;?>
+   </table>
+   </div>
+  </tr>
+  <?php
+    foreach ($gaCtgTypes as $sCode => $sName) {
+      $gaCategories = getCategories($sCode);
+      $gaItemCategories = getItemCategories($sCode,$item_id);
+      $$sCode = array();
+      $i = 0;
+      $sCategories = '';
+      foreach ($gaItemCategories as $iCtgId => $oCtg){
+        ${$sCode}[$i++] = $iCtgId;
+        $sCategories .= $oCtg->ctg_name.',';
+      }
+      echo("\n  <tr valign=top><td nowrap><li class=\"filter $PARAMSCLOSED\" id=filter1-$sCode$item_id>
+                <span onclick=\"switchClass(document.getElementById('filter1-$sCode$item_id'), 'fclose'); \">
+                  <i> </i>$sName
+                </span>
+                <div class=filter-content>");
+      foreach ($gaCategories as $iCtgId => $oCtg) {
+        $checked='';
+        if (isset($$sCode))  if (in_array ($iCtgId, $$sCode)) $checked = 'checked';
+        echo(" <input name=".$sCode.$item_id."[] type=checkbox value=$iCtgId $checked /> $oCtg->ctg_name <br>");
+      }
+      echo ("</div></li><td><li class=filter>$sCategories</li>");
+    }
+   ?>
+ </table>
+ <?php if($SHOWITEM):?>
+ <input type="submit" value="Сохранить" class="PrdButton"/>
+ <input type="submit" value=" << Предыдущий" name="prev_action" class="PrdButton"/>
+ <input type="submit" value="Следующий >> " name="next_action" class="PrdButton"/>
+ <?php endif;?>
+</form>

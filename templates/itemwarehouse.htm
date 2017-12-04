@@ -1,0 +1,27 @@
+<div class=editform>
+<h3>Остатки на складах</h3>
+
+<table>
+<?php foreach($ITEM->wrh_rests as $i=> $ROW):?>
+<?php if($ROW->qty_rest!=0||$ROW->qty_reserved):?>
+<tr>
+<td><?=($ROW->ord==0?'<b>':'')?><?=$ROW->ctg_name?><?=($ROW->ord==0?'</b>':'')?></td> 
+<td><em><?=$ROW->qty_rest?></em> <?=$ROW->um_name?></td> 
+<td>Резерв: <em><?=$ROW->qty_reserved?></em> <?=$ROW->um_name?></td>
+</tr>
+<?php endif;?>
+<?php endforeach;?>
+</table>
+</div>
+<div class="statreport">
+<h3>Операции</h3>
+<div class="toolbar">
+ <a href="javascript:changeEditMode('<?=$ITEM->id?>','newtran','edit')"><img src="images/btn-edit.jpg" alt="Перейти в режим редактирования"></a>
+ <em id=ajaxmesnewtran<?=$ITEM->id?>></em>
+</div>
+<div id=newtran<?=$ITEM->id?>>
+</div>
+<div id=createdtran<?=$ITEM->id?>>
+<?php require('templates/itemtranstable.htm');?>
+</div>
+</div>

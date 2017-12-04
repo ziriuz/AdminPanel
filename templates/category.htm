@@ -1,0 +1,9 @@
+  <div id=categorycontent<?=$CATEGORY->id?>>
+  <span class="toolbar">
+    <a href="javascript:changeEditMode('<?=$CATEGORY->id?>','category','edit')"><img src="images/btn-edit1.jpg" alt="Перейти в режим редактирования"></a>
+    <a href="javascript:changeEditMode('<?=$CATEGORY->id?>','category','delete')"><img src="images/btn-del1.jpg" alt="Удалить элемент"></a>
+    <em id=ajaxmescategory<?=$CATEGORY->id?>></em>
+  </span>
+  <span  id=category<?=$CATEGORY->id?>><?=$CATEGORY->name?></span>
+  </div>
+
