@@ -2,7 +2,7 @@
 <ТН НомТН="112" ДатаТН="09.06.2016">
 <Таблица>
 <?php foreach($documentItems as $i=>$docItem):?>
-<СвТов НомТов="<?=$i?>" НаимТов="<?=$docItem->alt_code?> - <?=$docItem->thing?>, р. <?=$docItem->size?>"  АртикулТов="<?=$docItem->alt_code?>" КодТов="<?=$docItem->label_code?>" НаимЕдИзм="шт" ОКЕИ_Тов="796" Нетто="<?=$docItem->qty?>" Цена="<?=$docItem->price_min?>" СумБезНДС="<?=$docItem->amount_min?>" СтавкаНДС="0" СумНДС="0.00" СумУчНДС="<?=$docItem->amount_min?>"  />
+<СвТов НомТов="<?=$i?>" НаимТов="<?=$docItem->alt_code?> - <?=iconv("UTF-8","windows-1251",$docItem->thing)?>, р. <?=$docItem->size?>"  АртикулТов="<?=$docItem->alt_code?>" КодТов="<?=$docItem->label_code?>" НаимЕдИзм="шт" ОКЕИ_Тов="796" Нетто="<?=$docItem->qty?>" Цена="<?=$docItem->price_min?>" СумБезНДС="<?=$docItem->amount_min?>" СтавкаНДС="0" СумНДС="0.00" СумУчНДС="<?=$docItem->amount_min?>"  />
 <?php endforeach;?>
 </Таблица>
 <ТНОбщ КолНомЗап="9" КолНомЗапПр="девять" ВсМест="0" ВсМестПр="ноль" Нетто="348" НеттоПр="348" Брутто="0.000" БруттоПр="Ноль" />
