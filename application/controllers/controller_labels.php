@@ -146,11 +146,20 @@ class Controller_Labels extends Controller
             $data['exception']=true;
             $data['message']=$ex->getMessage();
         }
-        if ($token != "label" && $token != "detail_label" && $token != "inner_label"){
+        if ($token != "label" && $token != "detail_label" && $token != "inner_label" && $token != "inner_label2"){
             $data["template"] = "label";
         }
         else {
-            $data["template"] = $token;
+            if ($token == "inner_label2"){
+                $data["template"] = "inner_label";
+                $data["company"] = "ИП Данилова Е.В.";
+                $data["company_address"] = "ул. Коминтерна 28-1-113";
+            } else {
+                $data["template"] = $token;
+                $data["company"] = "ИП Валиева А.Т.";
+                $data["company_address"] = "Алтуфьевское ш.37к22";
+            }
+            
         }
         header('Content-type: text/html; charset=utf-8');
         $this->view->generate('print_labels_view.php', 'print_template_view.php', $data);

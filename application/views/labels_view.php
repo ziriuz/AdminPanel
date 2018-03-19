@@ -47,7 +47,8 @@
     <form method=post action="labels/print<?=(isset($active_doc)?"?doc_id=$active_doc":'')?>" target="_blank">
         <button name = "token" value="label">Этикетки</button>
         <button name = "token" value="detail_label">Этикетки mamsy</button>
-        <button name = "token" value="inner_label">Этикетки картон</button>
+        <button name = "token" value="inner_label">Этикетки В</button>
+        <button name = "token" value="inner_label2">Этикетки Д</button>
         <input type="checkbox" onClick="select_all(this)" />Выделить все
 <div id=itemtable style="display:block;height:500px; overflow-y: auto;margin-top: 10px">     
 <table class="table label-list" id="doc_item_table">
